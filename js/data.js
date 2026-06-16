@@ -1230,9 +1230,7 @@ In conclusion, homeschooling has both positive and negative sides. Parents shoul
                   "Nhìn chung, mặc dù có nhiều bất lợi thế nhưng các hoạt động ngoài lớp học rất cần thiết cho sự phát triển toàn diện của học sinh.",
                   "Học sinh nên được khuyến khích tham gia các hoạt động này."
             ],
-            b1Sample: `©
-
-Nowadays, more and more students tend to do a lot of extracurricular activities besides learning school subjects. These activities bring them many advantages, but they also contain drawbacks. This essay will discuss both sides of doing outdoor activities.
+            b1Sample: `Nowadays, more and more students tend to do a lot of extracurricular activities besides learning school subjects. These activities bring them many advantages, but they also contain drawbacks. This essay will discuss both sides of doing outdoor activities.
 
 On the one hand, there are advantages of joining outdoor activities. Firstly, students can explore and develop their interests. For example, they can do what they like such as dancing, singing and so on; therefore, they become more confident. Besides, they can improve other skills such as managing time and solving problems. Also, doing these activities helps students relax after school. Secondly, extracurricular activities help students improve social skills. When doing team sports such as volleyball and basketball, students can communicate with more people and make more new friends. Hence, they can broaden their relationship. Finally, outdoor activities improve students' health. Clearly, students become healthy and fit when playing sports.
 
@@ -1241,9 +1239,7 @@ On the other hand, extracurricular activities have various disadvantages. First 
 In conclusion, although extracurricular activities have some bad points, they are very good for the development of students. Students should balance time between study and these activities to get the best results.
 
 (269 words)`,
-            b2Sample: `©
-
-Besides gaining academic knowledge, taking part in extracurricular activities plays an important role in students' personal development. However, many people argue that students have to cope with several drawbacks when joining these activities. My essay will examine both positive and negative aspects of them.
+            b2Sample: `Besides gaining academic knowledge, taking part in extracurricular activities plays an important role in students' personal development. However, many people argue that students have to cope with several drawbacks when joining these activities. My essay will examine both positive and negative aspects of them.
 
 <mark class="structure"><b>On the one hand</b></mark>, extracurricular activities create positive changes in students. <mark class="structure"><b>First and foremost</b></mark>, extracurricular activities promote students' <mark class="phrase">self-exploration</mark> and development of talents. <mark class="structure"><b>For example</b></mark>, they have chances to <mark class="phrase">do what they <mark class="phrase">take interest in</mark></mark> such as joining a music club or a sports team. This assists them in boosting their confidence and enhancing other skills such as time management and problem-solving skills. Additionally, doing these activities helps them refresh their mind after hard studying hours at school. <mark class="structure"><b>Furthermore</b></mark>, extracurricular activities enable students to improve social life and develop social skills. When participating in team sports and clubs, they <mark class="phrase">have <mark class="phrase">a larger circle of friends</mark></mark> who share the same interest. <mark class="structure"><b>As a result</b></mark>, they can build more new relationships. <mark class="structure"><b>Last but not least</b></mark>, taking part in outdoor activities is beneficial to students' physical health. To be more specific, they are able to <mark class="phrase">stay healthy and keep fit</mark>.
 
@@ -1837,9 +1833,7 @@ All in all, despite various drawbacks, activities outside the classroom are very
                   "Tóm lại, kỹ năng làm nhiều việc cùng một lúc có lợi vừa có hại.",
                   "Nếu những người muốn làm nhiều việc cùng một lúc có một kế hoạch hợp lý để thực hiện tất cả các nhiệm vụ, họ có thể tận dụng những mặt tích cực và tránh những mặt tiêu cực của nó."
             ],
-            b1Sample: `MẦU
-
-Multitasking is the ability to do many tasks at the same time. Many people say that multitasking is useful for their work; however, others believe that it has many bad points.
+            b1Sample: `Multitasking is the ability to do many tasks at the same time. Many people say that multitasking is useful for their work; however, others believe that it has many bad points.
 
 #### My essay will be about advantages and disadvantages of this skill.
 
@@ -2242,11 +2236,7 @@ In conclusion, multitasking has both pros and cons. People should consider multi
                   "Tóm lại, lại ích của việc học ngoại ngữ nhiều hơn những bất lại của nó.",
                   "Vì vậy, trẻ em nên được khuyến khích học ngoại ngữ từ cấp 1."
             ],
-            b1Sample: `MÃU
-
-©
-
-These days, learning a foreign language has become more and more important to everyone because of international business and study. Some people think that it is essential for children to begin learning a foreign language at primary school while others believe it is better for students to start learning it at secondary school. I agree with the first idea for some reasons.
+            b1Sample: `These days, learning a foreign language has become more and more important to everyone because of international business and study. Some people think that it is essential for children to begin learning a foreign language at primary school while others believe it is better for students to start learning it at secondary school. I agree with the first idea for some reasons.
 
 On the one hand, there are several advantages of kids starting learning a foreign language at primary school. Younger children can learn fast. It is true that kids can learn vocabulary and pronunciation of the language better than older ones. Several studies show that at a young age, learners can copy things or learn new things faster. Besides, they also feel less shy to speak the language; therefore, they can pronounce it more correctly and fluently.
 
@@ -2457,9 +2447,7 @@ In conclusion, it is clear that starting learning a foreign language at primary 
                   "Tóm lại, việc tham gia lớp học đóng một vai trò quan trọng trong quá trình học của sinh viên.",
                   "Tuy nhiên, một số buổi học nên không bắt buộc để sinh viên có thể giải quyết những việc quan trọng của cá nhân và gia đình, lựa chọn phương pháp học phù hợp nhất hoặc tích lũy kinh nghiệm thực tế."
             ],
-            b1Sample: `MẦU
-
-Class attendance is a debated topic in education these days. Many people say that students should be forced to attend all lessons while others believe that going to class should be optional. In my opinion, class attendance should be compulsory but some lessons are optional.
+            b1Sample: `Class attendance is a debated topic in education these days. Many people say that students should be forced to attend all lessons while others believe that going to class should be optional. In my opinion, class attendance should be compulsory but some lessons are optional.
 
 On the one hand, there are benefits of joining classes. First of all, students can learn a lot from their teachers. Teachers can give students knowledge about many aspects of life and help them understand subjects more deeply. For example, they can explain the lessons in an easier way, give examples and so on. Secondly, students can improve many skills when attending classes. For example, when students work or discuss with their classmates, they can improve soft skills such as group work skills and communication skills. They can also make new friends and share problems with each other. Therefore, they can understand the lessons more.
 
@@ -2939,9 +2927,7 @@ In conclusion, although the mass media make life easier, they bring some drawbac
                   "Tóm lại, ngăn chặn việc hút thuốc lá ở nơi công cộng là một điều vô cùng cần thiết bài những tác động tiêu cực của nó đối với người hút thuốc, những người xung quanh và môi trường.",
                   "Mọi người nên bò thuốc lá để có một sức khỏe tốt, giữ gìn vệ sinh môi trường và nâng cao chất lượng cuộc sống."
             ],
-            b1Sample: `MẢU
-
-Nowadays, more and more people, especially young people prefer smoking. Many people think that smoking is bad for the health of both smokers and people close by. I totally agree that smoking should be banned in public places because of some following reasons.
+            b1Sample: `Nowadays, more and more people, especially young people prefer smoking. Many people think that smoking is bad for the health of both smokers and people close by. I totally agree that smoking should be banned in public places because of some following reasons.
 
 The first reason is that smoking is not good for people's health. Cigarettes contain toxic elements, so it causes a lot of diseases for smokers; for example, lung diseases, lung cancer and even death. Besides, smoking affects non-smokers badly. For example, people around smokers can get some diseases, especially children and pregnant women are easily affected by smoke. Moreover, most people feel uncomfortable when being near smokers.
 
@@ -3471,9 +3457,7 @@ In conclusion, both university education and vocational training are beneficial 
                   "Tóm lại, mỗi người có sự lựa chọn riêng khi chọn uu tiên cho sự hài lòng trong công việc hay mức lương cao khi đi xin việc.",
                   "Theo quan điểm của tôi, sự hài lòng trong công việc quan trọng hơn mức lương mà mọi người đạt được vì nếu họ hãng hải làm công việc của mình, họ cũng sẽ kiểm được nhiều tiền."
             ],
-            b1Sample: `MÃU
-
-Nowadays there are many factors for people to consider when they choose a job. While some people think that job satisfaction is more essential than a high salary, others do not think so. In my opinion, both job satisfaction and high salary are equally important because of the following reasons.
+            b1Sample: `Nowadays there are many factors for people to consider when they choose a job. While some people think that job satisfaction is more essential than a high salary, others do not think so. In my opinion, both job satisfaction and high salary are equally important because of the following reasons.
 
 On the one hand, job satisfaction brings people many benefits. First of all, people are in a good mood when working. When people can do a job they like, they focus more on their work. As a result, they can complete their work better and achieve more goals in work. Besides, this helps to create a positive working environment. Another advantage is that satisfaction in job makes people reduce stress. It is clear that some jobs are very stressful and challenging, so if they are interested in their work, they will not feel bored or stressed. Therefore, they will feel healthier and have a happier life.
 
@@ -3956,9 +3940,7 @@ In conclusion, global trade has both advantages and disadvantages. In my opinion
                   "Tóm lại, làm việc nhà có nhiều tác động tích cực đến trẻ em và gia đình.",
                   "Cha mẹ nên giao cho trẻ làm những công việc phù hợp với lúa tuổi và khả năng của trẻ, đồng thời hướng dẫn trẻ làm những công việc này."
             ],
-            b1Sample: `MẢU
-
-Some people think that it is not necessary for children to cook or do housework; however, others believe that they have to do these tasks when they are able to do so. I agree with the latter idea because of some following reasons.
+            b1Sample: `Some people think that it is not necessary for children to cook or do housework; however, others believe that they have to do these tasks when they are able to do so. I agree with the latter idea because of some following reasons.
 
 First of all, doing household chores helps children play their role in their family. It is true that every family member has their own duty. When children do some tasks such as cleaning the house and washing dishes, they can feel proud of finishing something and being a part of their family. Besides, they become more responsible for their family. This is very important for their life in the future because they will learn to be responsible for everything they do.
 
@@ -4572,9 +4554,7 @@ In conclusion, playing computer games is both positive and negative. It seems to
                   "Tóm lại, mặc dù tiếng Anh đạt được vị thế toàn cầu thế nhưng mọi người không bao giờ nên coi thường tầm quan trọng của ngôn ngữ mẹ đề của mình.",
                   "Hộ nên thông thạo hai ngôn ngữ cùng một lúc để tận dụng được những lợi ích của chúng."
             ],
-            b1Sample: `MẦU
-
-Nowadays English has become a global language. Many people think that people should only learn English instead of their native language; however, others believe that English will not replace the mother tongue. My essay will discuss both views and give my personal opinion.
+            b1Sample: `Nowadays English has become a global language. Many people think that people should only learn English instead of their native language; however, others believe that English will not replace the mother tongue. My essay will discuss both views and give my personal opinion.
 
 On the one hand, English should replace the native language because of some reasons. First of all, English is widely used by both native and non-native speakers all over the world. According to statistics, it is used as the first or second language in over 60 countries. Therefore, learning it is very important to communicate with people all over the world. Secondly, English is used in many fields of life. For example, it is a communication tool for people in different cultures and nations. Besides, it is a popular language in industries, technology, education and so on. Therefore, learning English helps people gain more knowledge and become more successful in the future. Finally, it is easy to learn English. The letter system of English is simple and the vocabulary is quite easy to understand.
 
@@ -5072,9 +5052,7 @@ In conclusion, both central authorities and teachers play important roles in cho
                   "Tóm lại, có hai nguyên nhân chính dẫn đến việc mọi người muốn sống một mình và có nhiều ảnh hưởng của xu hướng này.",
                   "Bồi vì những mặt tiêu cực của cuộc sống độc thân nhiều hơn những mặt tích cực của nó cho nên chính phù nên có những hành động khuyến khích giới trẻ kết hôn để giảm thiểu những bất lợi của nó."
             ],
-            b1Sample: `MẦU
-
-Nowadays more and more people choose to stay single instead of getting married to enjoy their life. However, this trend also brings them some drawbacks. This essay will discuss causes of this trend and its possible effects.
+            b1Sample: `Nowadays more and more people choose to stay single instead of getting married to enjoy their life. However, this trend also brings them some drawbacks. This essay will discuss causes of this trend and its possible effects.
 
 There are several reasons why people want to live alone. The first reason is that people prefer more freedom and better skill development. For example, they have more freedom to do what they like without being afraid of bothering others. Besides, they can learn more skills such as cleaning houses and cooking by themselves. Secondly, many people prefer a single life because marriage life involves too much commitment and responsibility. For instance, when getting married, they have to keep having good relationships with many people and solve any problems. Moreover, taking care of young children and raising them is very hard.
 
@@ -5641,9 +5619,7 @@ In conclusion, technology brings learners and teachers both benefits and drawbac
                   "Tóm lại, mặc dù có nhiều ảnh hưởng tiêu cực của sự căng thẳng thế nhưng vẫn có những cách kiểm soát căng thẳng hiệu quả.",
                   "Điều quan trọng là mọi người có một lối sống lành mạnh để vượt qua sự căng thẳng của cuộc sống bạn rộn trong xã hội hiện đại."
             ],
-            b1Sample: `MẦU
-
-In recent years, more and more people face stress because of many reasons. Stress has become a serious problem in modern life. This essay will discuss effects of stress and suggest some solutions to this problem.
+            b1Sample: `In recent years, more and more people face stress because of many reasons. Stress has become a serious problem in modern life. This essay will discuss effects of stress and suggest some solutions to this problem.
 
 There are many bad consequences of stress. First of all, stress causes serious health problems. For example, people feel tired and have a headache or skin problems. Therefore, they lack focus on everything and this affects their work or study badly. Secondly, stress has bad effects on people's behaviors. When feeling stressed, some people tend to have bad habits such as using drugs or drinking alcohol. This is not good for their health. Besides, some others become violent or easily get angry, so they may have bad actions. Lastly, stress affects people's relationship badly. Stressed people often do not want to communicate with others, so they become less close to each other.
 
@@ -6118,9 +6094,7 @@ There are various measures which could be taken to <mark class="phrase">release 
                   "Tóm lại, có hai yếu tố góp phần gây ra béo phì bao gồm chế độ ăn uống không cân bằng và lối sống ít vận động.",
                   "Tuy nhiên, nếu các bậc cha mẹ và chính phủ thực hiện những biện pháp được đề xuất thì vấn đề đáng lo ngại này có thể sớm được giải quyết."
             ],
-            b1Sample: `MẦU
-
-Nowadays obesity has become an increasingly serious problem among people in the world, especially the young. This essay will examine some causes of this problem and suggest some measures to solve it.
+            b1Sample: `Nowadays obesity has become an increasingly serious problem among people in the world, especially the young. This essay will examine some causes of this problem and suggest some measures to solve it.
 
 There are some causes of becoming overweight. First of all, children have an unhealthy diet. Kids tend to enjoy eating a lot of fast food and sugary drinks. Besides, nowadays parents are too busy to cook healthy meals. Therefore, they might choose take away food. This is bad for children's health and children might gain weight very quickly. Secondly, kids have an inactive lifestyle. For example, many children spend time sitting in front of computers or TV and become too lazy to do exercise. Children also like playing computer games or chatting online at home instead of taking part in outdoor activities. This easily makes them become overweight.
 
@@ -6609,9 +6583,7 @@ The second reason for the trend of <mark class="phrase">worldwide travel</mark> 
                   "Tóm lại, có những yếu tố dẫn đến tội phạm bạo lực bao gồm sự thiếu quan tâm của người lớn đối với trẻ em, sự thiếu các kỹ năng xã hội và cảm xúc của trẻ, và việc làm dụng các phương tiện truyền thông xã hội của giới trẻ.",
                   "Gia đình, trường học và chính phủ có thể thực hiện các biện pháp được đề xuất để giải quyết vấn đề này."
             ],
-            b1Sample: `MẦU
-
-It is true that youth crime rate is increasing very quickly all over the world. Violent crime is very common among young people under the age of 18. My essay will discuss reasons for this problem and suggest some solutions to it.
+            b1Sample: `It is true that youth crime rate is increasing very quickly all over the world. Violent crime is very common among young people under the age of 18. My essay will discuss reasons for this problem and suggest some solutions to it.
 
 There are some reasons for violent crime among youngsters. Firstly, the young lack attention from their parents. Nowadays, most parents are too busy at work to get money, so they do not have much time to communicate with their children and teach their children about good behaviors. Secondly, teachers do not care about students' social and emotional learning. In fact, teachers have to focus on teaching school subjects such as Maths and Literature instead of helping them know about qualities to become a good person. Therefore, they might be easily involved in crime without the care of teachers. Finally, the young use social media too much. They might see violent images or videos and play violent games on the Internet. As a result, they copy violent actions and do bad things in real life.
 
