@@ -3,13 +3,45 @@
    ═══════════════════════════════════════════════════════════ */
 
 // ─── STATE ───────────────────────────────────────────────────────────────────
+let currentPart = parseInt(localStorage.getItem('vstep_current_part') || '1');
 let currentEssay = null;
 let timerInterval = null;
-let timerSeconds = 40 * 60;
+let timerSeconds = currentPart === 1 ? 20 * 60 : 40 * 60;
 let timerRunning = false;
 let savedScores = JSON.parse(localStorage.getItem('vstep_scores') || '{}');
 let savedDrafts = JSON.parse(localStorage.getItem('vstep_drafts') || '{}');
 let currentSample = 'b2';
+
+function getActiveEssays() {
+  return currentPart === 1 ? ESSAYS_PART1 : ESSAYS;
+}
+
+function getActiveCategories() {
+  if (currentPart === 1) {
+    return [
+      { key: 'request', label: 'Thư Yêu Cầu & Hỏi Thông Tin', icon: '❓' },
+      { key: 'invitation', label: 'Thư Mời & Phản Hồi', icon: '✉️' },
+      { key: 'thanks_apology', label: 'Thư Cảm Ơn & Xin Lỗi', icon: '🙏' },
+      { key: 'advice_suggest', label: 'Thư Khuyên Nhủ & Gợi Ý', icon: '💡' },
+      { key: 'complaint', label: 'Thư Khiếu Nại', icon: '📢' },
+      { key: 'apply_permit', label: 'Thư Xin Việc & Xin Nghỉ', icon: '📝' }
+    ];
+  } else {
+    return [
+      { key: 'adv', label: 'Advantages & Disadvantages', icon: '⚖️' },
+      { key: 'opinion', label: 'Opinion Essays', icon: '💭' },
+      { key: 'discussion', label: 'Discussion Essays', icon: '🗣️' },
+      { key: 'problem', label: 'Problem-Solution Essays', icon: '🔧' }
+    ];
+  }
+}
+
+function getEssayKey(essay) {
+  if (essay.part === 1) {
+    return `p1_${essay.id}`;
+  }
+  return essay.id;
+}
 
 // ─── THEME ───────────────────────────────────────────────────────────────────
 function initTheme() {
@@ -47,25 +79,63 @@ function closeMobileMenu() {
 // ─── INIT ────────────────────────────────────────────────────────────────────
 function init() {
   initTheme();
+  syncPartSelectors();
   buildSidebar();
   buildEssayGrid();
   updateStats();
 }
 
+function syncPartSelectors() {
+  // Sidebar
+  document.querySelectorAll('.sb-part-btn').forEach(btn => btn.classList.remove('active'));
+  const activeSbBtn = document.getElementById(`sb-part${currentPart}-btn`);
+  if (activeSbBtn) activeSbBtn.classList.add('active');
+
+  // Home Page
+  document.querySelectorAll('.part-selector-btn').forEach(btn => btn.classList.remove('active'));
+  const activeHomeBtn = document.getElementById(`home-part${currentPart}-btn`);
+  if (activeHomeBtn) activeHomeBtn.classList.add('active');
+  
+  // Update titles in Home view
+  const titleEl = document.getElementById('grid-section-title');
+  if (titleEl) {
+    titleEl.textContent = currentPart === 1 ? 'Tất cả đề thi viết thư (Part 1)' : 'Tất cả đề thi viết luận (Part 2)';
+  }
+
+  // Update Hero content dynamically
+  const heroTitle = document.getElementById('hero-title');
+  const heroDesc = document.getElementById('hero-desc');
+  if (heroTitle && heroDesc) {
+    if (currentPart === 1) {
+      heroTitle.textContent = 'Luyện Viết Thư VSTEP';
+      heroDesc.textContent = '30 đề thi viết thư mẫu · Bài mẫu B1 & B2 · Bản dịch tiếng Việt chi tiết · 20 phút / 120+ từ';
+    } else {
+      heroTitle.textContent = 'Luyện Viết Luận VSTEP B2';
+      heroDesc.textContent = '30 đề thi mẫu chất lượng cao · Bài mẫu B1 & B2 · Từ vựng nâng cao · Bản dịch tiếng Việt chi tiết · 40 phút / 250+ từ';
+    }
+  }
+
+  // Update document title
+  document.title = currentPart === 1 ? 'VSTEP Writing Part 1 — Luyện Viết Thư' : 'VSTEP Writing B2 — Nền Tảng Luyện Viết Luận Số 1';
+}
+
+function switchPart(partNum) {
+  currentPart = partNum;
+  localStorage.setItem('vstep_current_part', currentPart);
+  syncPartSelectors();
+  showHome();
+}
+
 // ─── SIDEBAR ─────────────────────────────────────────────────────────────────
 function buildSidebar(filter = '') {
-  const categories = [
-    { key: 'adv', label: 'Advantages & Disadvantages', icon: '⚖️' },
-    { key: 'opinion', label: 'Opinion Essays', icon: '💭' },
-    { key: 'discussion', label: 'Discussion Essays', icon: '🗣️' },
-    { key: 'problem', label: 'Problem-Solution Essays', icon: '🔧' }
-  ];
+  const categories = getActiveCategories();
+  const essaysList = getActiveEssays();
 
   const container = document.getElementById('sidebar-list');
   container.innerHTML = '';
 
   categories.forEach(cat => {
-    const items = ESSAYS.filter(e =>
+    const items = essaysList.filter(e =>
       e.type === cat.key &&
       (!filter || e.title.toLowerCase().includes(filter.toLowerCase()) ||
        e.typeLabel.toLowerCase().includes(filter.toLowerCase()))
@@ -78,9 +148,10 @@ function buildSidebar(filter = '') {
     grp.innerHTML = `<div class="category-header"><span class="cat-icon">${cat.icon}</span> ${cat.label}</div>`;
 
     items.forEach(essay => {
+      const key = getEssayKey(essay);
+      const done = savedScores[key] || savedDrafts[key];
       const btn = document.createElement('button');
-      const done = savedScores[essay.id];
-      btn.className = `essay-item ${currentEssay?.id === essay.id ? 'active' : ''} ${done ? 'done' : ''}`;
+      btn.className = `essay-item ${currentEssay?.id === essay.id && currentEssay?.part === essay.part ? 'active' : ''} ${done ? 'done' : ''}`;
       btn.innerHTML = `
         <div class="essay-num">${String(essay.id).padStart(2, '0')}</div>
         <div class="essay-meta">
@@ -103,19 +174,29 @@ function buildEssayGrid() {
   const container = document.getElementById('essay-grid');
   container.innerHTML = '';
 
-  const badgeMap = { adv: 'badge-adv', opinion: 'badge-opinion', discussion: 'badge-discussion', problem: 'badge-problem' };
+  const badgeMap = {
+    adv: 'badge-adv', opinion: 'badge-opinion', discussion: 'badge-discussion', problem: 'badge-problem',
+    request: 'badge-request', invitation: 'badge-invitation', thanks_apology: 'badge-thanks',
+    advice_suggest: 'badge-advice', complaint: 'badge-complaint', apply_permit: 'badge-apply'
+  };
 
-  ESSAYS.forEach(essay => {
-    const done = savedScores[essay.id];
+  const essaysList = getActiveEssays();
+
+  essaysList.forEach(essay => {
+    const key = getEssayKey(essay);
+    const score = savedScores[key] || 0;
+    const hasDraft = !!savedDrafts[key];
+    const isCompleted = score > 0 || hasDraft;
+
     const card = document.createElement('div');
-    card.className = `essay-card ${done ? 'done' : ''}`;
+    card.className = `essay-card ${isCompleted ? 'done' : ''}`;
     card.innerHTML = `
       <div class="essay-card-top">
         <div class="essay-card-num">${String(essay.id).padStart(2, '0')}</div>
         <span class="essay-card-type ${badgeMap[essay.type]}">${essay.typeLabel}</span>
       </div>
       <div class="essay-card-title">${essay.title}</div>
-      ${done ? `<div class="essay-card-score">Điểm: ${done}/10</div>` : ''}`;
+      ${score > 0 ? `<div class="essay-card-score">Điểm: ${score}/10</div>` : hasDraft ? `<div class="essay-card-score" style="color:var(--success)">Đã lưu nháp</div>` : ''}`;
     card.onclick = () => openEssay(essay);
     container.appendChild(card);
   });
@@ -134,15 +215,29 @@ function showHome() {
 
 function openEssay(essay) {
   currentEssay = essay;
+  closeTranslationSheet();
 
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('essay-view').style.display = 'block';
 
   // Badge
-  const badgeMap = { adv: 'badge-adv', opinion: 'badge-opinion', discussion: 'badge-discussion', problem: 'badge-problem' };
+  const badgeMap = {
+    adv: 'badge-adv', opinion: 'badge-opinion', discussion: 'badge-discussion', problem: 'badge-problem',
+    request: 'badge-request', invitation: 'badge-invitation', thanks_apology: 'badge-thanks',
+    advice_suggest: 'badge-advice', complaint: 'badge-complaint', apply_permit: 'badge-apply'
+  };
   const badge = document.getElementById('essay-badge');
   badge.textContent = essay.typeLabel;
   badge.className = `topic-badge ${badgeMap[essay.type]}`;
+
+  // Hide or show Outline/Vocab tabs based on availability
+  const hasOutlineAndVocab = essay.part !== 1;
+  document.getElementById('tab-btn-outline').style.display = hasOutlineAndVocab ? 'inline-block' : 'none';
+  document.getElementById('tab-btn-vocab').style.display = hasOutlineAndVocab ? 'inline-block' : 'none';
+
+  // Set minimum word limit label
+  const targetWords = essay.part === 1 ? 120 : 250;
+  document.getElementById('word-target-label').textContent = `Tối thiểu ${targetWords} từ`;
 
   // Prompt
   document.getElementById('prompt-context').textContent = essay.context;
@@ -152,35 +247,44 @@ function openEssay(essay) {
 
   // Outline
   const outline = essay.outline;
-  document.getElementById('outline-content').innerHTML = `
-    <div class="outline-section">
-      <div class="outline-label label-intro"><span class="label-dot"></span>MỞ BÀI (Introduction)</div>
-      <div class="outline-content">${outline.intro}</div>
-    </div>
-    <div class="outline-section">
-      <div class="outline-label label-body"><span class="label-dot"></span>THÂN BÀI (Body Paragraphs)</div>
-      <div class="outline-content"><ul>${outline.body.map(b => `<li>${b}</li>`).join('')}</ul></div>
-    </div>
-    <div class="outline-section">
-      <div class="outline-label label-conc"><span class="label-dot"></span>KẾT BÀI (Conclusion)</div>
-      <div class="outline-content">${outline.conc}</div>
-    </div>`;
+  if (outline) {
+    document.getElementById('outline-content').innerHTML = `
+      <div class="outline-section">
+        <div class="outline-label label-intro"><span class="label-dot"></span>MỞ BÀI (Introduction)</div>
+        <div class="outline-content">${outline.intro}</div>
+      </div>
+      <div class="outline-section">
+        <div class="outline-label label-body"><span class="label-dot"></span>THÂN BÀI (Body Paragraphs)</div>
+        <div class="outline-content"><ul>${outline.body.map(b => `<li>${b}</li>`).join('')}</ul></div>
+      </div>
+      <div class="outline-section">
+        <div class="outline-label label-conc"><span class="label-dot"></span>KẾT BÀI (Conclusion)</div>
+        <div class="outline-content">${outline.conc}</div>
+      </div>`;
+  } else {
+    document.getElementById('outline-content').innerHTML = '';
+  }
 
   // Vocab
   const vg = document.getElementById('vocab-content');
-  vg.innerHTML = Object.entries(essay.vocab).map(([section, pairs]) => `
-    <div class="vocab-section">
-      <h4>${section}</h4>
-      ${pairs.map(([b1, b1vi, b2, b2vi]) => `
-        <div class="vocab-pair">
-          <div class="vp-b1" ${b1vi ? `data-vi="🇻🇳 ${b1vi}"` : ''}>${b1}</div>
-          <div class="vp-arrow">→</div>
-          <div class="vp-b2" ${b2vi ? `data-vi="🇻🇳 ${b2vi}"` : ''}>${b2}</div>
-        </div>`).join('')}
-    </div>`).join('');
+  if (essay.vocab) {
+    vg.innerHTML = Object.entries(essay.vocab).map(([section, pairs]) => `
+      <div class="vocab-section">
+        <h4>${section}</h4>
+        ${pairs.map(([b1, b1vi, b2, b2vi]) => `
+          <div class="vocab-pair">
+            <div class="vp-b1" ${b1vi ? `data-vi="🇻🇳 ${b1vi}"` : ''}>${b1}</div>
+            <div class="vp-arrow">→</div>
+            <div class="vp-b2" ${b2vi ? `data-vi="🇻🇳 ${b2vi}"` : ''}>${b2}</div>
+          </div>`).join('')}
+      </div>`).join('');
+  } else {
+    vg.innerHTML = '';
+  }
 
   // Load saved draft
-  const draft = savedDrafts[essay.id] || '';
+  const essayKey = getEssayKey(essay);
+  const draft = savedDrafts[essayKey] || '';
   document.getElementById('my-essay').value = draft;
   updateWordCount();
 
@@ -206,6 +310,7 @@ function switchTab(name) {
   });
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.getElementById(`tab-${name}`).classList.add('active');
+  closeTranslationSheet();
 }
 
 // ─── SAMPLE ──────────────────────────────────────────────────────────────────
@@ -322,21 +427,25 @@ function updateWordCount() {
   const el = document.getElementById('word-counter');
   const span = el.querySelector('.wc-num');
   span.textContent = count;
-  el.className = `word-counter ${count >= 250 ? 'good' : count >= 200 ? 'warn' : ''}`;
+  
+  const targetWords = (currentEssay && currentEssay.part === 1) ? 120 : 250;
+  const warnThreshold = (currentEssay && currentEssay.part === 1) ? 100 : 200;
+
+  el.className = `word-counter ${count >= targetWords ? 'good' : count >= warnThreshold ? 'warn' : ''}`;
 
   // Word progress bar
   const barFill = document.getElementById('word-bar-fill');
   if (barFill) {
-    const pct = Math.min(count / 250 * 100, 100);
+    const pct = Math.min(count / targetWords * 100, 100);
     barFill.style.width = pct + '%';
-    barFill.className = `word-bar-fill ${count >= 250 ? 'good' : count >= 200 ? 'warn' : ''}`;
+    barFill.className = `word-bar-fill ${count >= targetWords ? 'good' : count >= warnThreshold ? 'warn' : ''}`;
   }
 }
 
 // ─── TIMER ───────────────────────────────────────────────────────────────────
 function resetTimer() {
   stopTimer();
-  timerSeconds = 40 * 60;
+  timerSeconds = (currentEssay && currentEssay.part === 1) ? 20 * 60 : 40 * 60;
   timerRunning = false;
   document.getElementById('timer-btn').textContent = 'Bắt đầu';
   updateTimerDisplay();
@@ -381,11 +490,12 @@ function updateTimerDisplay() {
 function saveProgress() {
   if (!currentEssay) return;
   const text = document.getElementById('my-essay').value;
-  savedDrafts[currentEssay.id] = text;
+  const key = getEssayKey(currentEssay);
+  savedDrafts[key] = text;
   localStorage.setItem('vstep_drafts', JSON.stringify(savedDrafts));
 
   // Mark as done
-  savedScores[currentEssay.id] = savedScores[currentEssay.id] || 0;
+  savedScores[key] = savedScores[key] || 0;
   localStorage.setItem('vstep_scores', JSON.stringify(savedScores));
 
   showToast('✅ Đã lưu nháp!');
@@ -402,18 +512,26 @@ function clearEssay() {
 
 // ─── STATS ───────────────────────────────────────────────────────────────────
 function updateStats() {
-  const done = Object.keys(savedScores).filter(k => savedScores[k] > 0 || savedDrafts[k]).length;
-  const realScores = Object.values(savedScores).filter(s => s > 0);
-  const avg = realScores.length ? (realScores.reduce((a, b) => a + b, 0) / realScores.length).toFixed(1) : '—';
+  const essaysList = getActiveEssays();
+  
+  // Calculate completed count based on active essays only
+  const done = essaysList.filter(e => {
+    const key = getEssayKey(e);
+    return savedScores[key] > 0 || savedDrafts[key];
+  }).length;
+
+  // Average score of current part
+  const partScores = essaysList.map(e => savedScores[getEssayKey(e)] || 0).filter(s => s > 0);
+  const avg = partScores.length ? (partScores.reduce((a, b) => a + b, 0) / partScores.length).toFixed(1) : '—';
 
   document.getElementById('stat-done').textContent = done;
   document.getElementById('stat-avg').textContent = avg;
   document.getElementById('hdr-done').textContent = done;
   document.getElementById('hdr-avg').textContent = avg;
 
-  const pct = (done / ESSAYS.length * 100).toFixed(0);
+  const pct = (done / essaysList.length * 100).toFixed(0);
   document.getElementById('main-progress').style.width = pct + '%';
-  document.getElementById('progress-text').textContent = `${done} / ${ESSAYS.length} bài`;
+  document.getElementById('progress-text').textContent = `${done} / ${essaysList.length} bài`;
 
   // Streak
   const today = new Date().toDateString();
@@ -448,6 +566,69 @@ document.addEventListener('mouseout', (e) => {
   if (sv) {
     const sClass = Array.from(sv.classList).find(c => c.startsWith('s-'));
     if (sClass) document.querySelectorAll('.' + sClass).forEach(el => el.classList.remove('hovered'));
+  }
+});
+
+// ─── SENTENCE CLICK (MOBILE TRANSLATION BOTTOM SHEET) ────────────────────────
+document.addEventListener('click', (e) => {
+  const sv = e.target.closest('.sv');
+  if (sv) {
+    // Check if we are on a mobile viewport (or narrow screen <= 768px)
+    if (window.innerWidth <= 768) {
+      // Remove previous active highlights
+      document.querySelectorAll('.sv').forEach(el => el.classList.remove('active-sentence'));
+      
+      // Find the sentence class (e.g. s-1, s-2) and highlight all elements of this sentence
+      const sClass = Array.from(sv.classList).find(c => c.startsWith('s-'));
+      if (sClass) {
+        document.querySelectorAll('.' + sClass).forEach(el => el.classList.add('active-sentence'));
+      }
+      
+      // Get the original English text and the Vietnamese translation
+      const originalText = getFullSentenceText(sv);
+      const translatedText = sv.getAttribute('data-vi') || '';
+      
+      showTranslationSheet(originalText, translatedText);
+    }
+  }
+});
+
+// Helper to reconstruct the full sentence text from the clicked span and its siblings with the same sentence class
+function getFullSentenceText(clickedEl) {
+  const sClass = Array.from(clickedEl.classList).find(c => c.startsWith('s-'));
+  if (!sClass) return clickedEl.textContent.trim();
+  
+  // Find all parts of the sentence in the document and join them
+  const parts = Array.from(document.querySelectorAll('.' + sClass));
+  return parts.map(el => el.textContent).join('').replace(/\s+/g, ' ').trim();
+}
+
+function showTranslationSheet(original, translated) {
+  const sheet = document.getElementById('translation-sheet');
+  const origEl = document.getElementById('translation-original');
+  const transEl = document.getElementById('translation-translated');
+  
+  if (!sheet || !origEl || !transEl) return;
+  
+  origEl.textContent = original;
+  transEl.textContent = translated;
+  
+  sheet.classList.add('open');
+}
+
+function closeTranslationSheet() {
+  const sheet = document.getElementById('translation-sheet');
+  if (sheet) {
+    sheet.classList.remove('open');
+  }
+  // Remove all active highlights
+  document.querySelectorAll('.sv').forEach(el => el.classList.remove('active-sentence'));
+}
+
+// Close bottom sheet on Escape key press
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeTranslationSheet();
   }
 });
 
