@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSTEP Writing B2 — Nền Tảng Luyện Viết Luận Số 1</title>
+  <meta name="description" content="Luyện viết luận VSTEP B2 với 30 đề thi mẫu, bài mẫu B1 & B2, từ vựng nâng cao, bản dịch tiếng Việt. Miễn phí 100%.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="logo">
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+    <div class="logo-icon">V</div>
+    <span class="logo-text">VSTEP Writing</span>
+    <span class="logo-badge">B2</span>
+  </div>
+  <div class="header-actions">
+    <div class="header-stats">
+      <span>Đã làm: <span class="stat-val" id="hdr-done">0</span>/30</span>
+      <span>Điểm TB: <span class="stat-val" id="hdr-avg">—</span></span>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Chuyển đổi giao diện">🌙</button>
+  </div>
+</header>
+
+<!-- ═══ SIDEBAR OVERLAY (mobile) ═══ -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMobileMenu()"></div>
+
+<div class="app">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-search">
+      <input type="text" id="search-input" placeholder="🔍  Tìm đề thi..." oninput="filterEssays(this.value)">
+    </div>
+    <div id="sidebar-list"></div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main">
+
+    <!-- ─── HOME VIEW ─── -->
+    <div id="home-view">
+
+      <!-- Hero -->
+      <div class="hero">
+        <h1>Luyện Viết Luận VSTEP B2</h1>
+        <p>30 đề thi mẫu chất lượng cao · Bài mẫu B1 & B2 · Từ vựng nâng cao · Bản dịch tiếng Việt chi tiết</p>
+        <div class="hero-progress">
+          <div class="progress-track">
+            <div class="progress-fill" id="main-progress" style="width:0%"></div>
+          </div>
+          <div class="progress-label">
+            <span>Tiến độ học tập</span>
+            <span id="progress-text">0 / 30 bài</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="num" id="stat-done">0</div>
+          <div class="label">Bài đã hoàn thành</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="stat-avg">—</div>
+          <div class="label">Điểm trung bình</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="stat-streak">0</div>
+          <div class="label">Chuỗi ngày học</div>
+        </div>
+      </div>
+
+      <!-- Essay Grid -->
+      <div class="essay-grid-section">
+        <h2>Tất cả đề thi</h2>
+        <p class="subtitle">Chọn một đề để bắt đầu luyện tập</p>
+        <div class="essay-grid" id="essay-grid"></div>
+      </div>
+
+      <!-- Guide -->
+      <div class="guide-section">
+        <h3>📋 Hướng dẫn sử dụng</h3>
+        <div class="guide-grid">
+          <div class="guide-item">
+            <div class="guide-icon blue">📖</div>
+            <div>
+              <h4>Đọc đề & dàn ý</h4>
+              <p>Xem prompt, yêu cầu và gợi ý cấu trúc bài viết</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <div class="guide-icon green">✍️</div>
+            <div>
+              <h4>Viết bài</h4>
+              <p>Tối thiểu 250 từ, trong 40 phút như thi thật</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <div class="guide-icon amber">💬</div>
+            <div>
+              <h4>Học từ vựng B2</h4>
+              <p>So sánh cách diễn đạt B1 → B2, rê chuột xem nghĩa</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <div class="guide-icon purple">📊</div>
+            <div>
+              <h4>So sánh bài mẫu</h4>
+              <p>Xem bài mẫu B1 & B2 với bản dịch tiếng Việt</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>© 2025 <a href="#">VSTEP Writing B2</a> — Nền tảng luyện viết luận miễn phí · Built with ❤️ cho thí sinh Việt Nam</p>
+      </div>
+    </div>
+
+    <!-- ─── ESSAY VIEW ─── -->
+    <div id="essay-view">
+      <div class="essay-top-bar">
+        <button class="back-btn" onclick="showHome()">← Tất cả đề</button>
+        <span id="essay-badge" class="topic-badge badge-adv"></span>
+        <div class="spacer"></div>
+        <div class="timer-box" id="timer-display">⏱ 40:00</div>
+        <button class="timer-btn" id="timer-btn" onclick="toggleTimer()">Bắt đầu</button>
+      </div>
+
+      <!-- Prompt -->
+      <div class="prompt-card">
+        <div class="prompt-label">📋 Đề bài</div>
+        <div class="prompt-context" id="prompt-context"></div>
+        <div class="prompt-task" id="prompt-task"></div>
+        <div class="prompt-hints" id="prompt-hints"></div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('write')">✍️ Viết</button>
+        <button class="tab" onclick="switchTab('outline')">📐 Dàn ý</button>
+        <button class="tab" onclick="switchTab('vocab')">💬 Từ vựng B2</button>
+        <button class="tab" onclick="switchTab('sample')">📖 Bài mẫu</button>
+        <button class="tab" onclick="switchTab('feedback')">📊 Tiến độ</button>
+      </div>
+
+      <!-- Write Tab -->
+      <div class="tab-panel active" id="tab-write">
+        <div class="write-toolbar">
+          <div class="word-counter" id="word-counter">
+            Số từ: <span class="wc-num">0</span>
+            <div class="word-bar"><div class="word-bar-fill" id="word-bar-fill" style="width:0%"></div></div>
+          </div>
+          <div style="font-size:12px;color:var(--ink-muted);">Tối thiểu 250 từ</div>
+        </div>
+        <textarea class="essay-textarea" id="my-essay"
+          placeholder="Bắt đầu viết bài của bạn ở đây...&#10;&#10;Gợi ý: Viết mở bài trước (2-3 câu giới thiệu chủ đề), sau đó thân bài và kết bài."
+          oninput="updateWordCount()"></textarea>
+        <div class="action-row">
+          <button class="btn-primary" onclick="saveProgress()">💾 Lưu nháp</button>
+          <button class="btn-secondary" onclick="clearEssay()">🗑 Xóa</button>
+        </div>
+      </div>
+
+      <!-- Outline Tab -->
+      <div class="tab-panel" id="tab-outline">
+        <div class="outline-box" id="outline-content"></div>
+      </div>
+
+      <!-- Vocab Tab -->
+      <div class="tab-panel" id="tab-vocab">
+        <div class="vocab-info">
+          So sánh cách diễn đạt <strong>B1 → B2</strong> để nâng cao điểm từ vựng &nbsp;·&nbsp; 🖱️ <em>Rê chuột vào từ/cụm từ để xem nghĩa tiếng Việt</em>
+        </div>
+        <div class="vocab-grid" id="vocab-content"></div>
+      </div>
+
+      <!-- Sample Tab -->
+      <div class="tab-panel" id="tab-sample">
+        <div class="sample-tab-btns">
+          <button class="sample-btn b1" id="sample-b1-btn" onclick="showSample('b1')">📘 Bài mẫu B1</button>
+          <button class="sample-btn b2 active" id="sample-b2-btn" onclick="showSample('b2')">🏆 Bài mẫu B2</button>
+        </div>
+        <div class="sample-essay" id="sample-content"></div>
+        <div class="sample-legend">
+          💡 <span style="background:#fef9c3;padding:1px 6px;border-radius:3px;">Vàng</span> = cụm từ hay &nbsp;|&nbsp; <span style="background:#dbeafe;padding:1px 6px;border-radius:3px;font-weight:600;">Xanh</span> = cấu trúc B2 &nbsp;|&nbsp; 🖱️ <em>Rê chuột vào câu để xem bản dịch tiếng Việt</em>
+        </div>
+      </div>
+
+      <!-- Feedback / Progress Tab -->
+      <div class="tab-panel" id="tab-feedback">
+        <div id="feedback-content"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Scripts -->
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+title: VSTEP Writing B2 — Nền Tảng Luyện Viết Luận
+description: Luyện viết luận VSTEP B2 với 30 đề thi mẫu, bài mẫu B1 & B2, từ vựng nâng cao, bản dịch tiếng Việt
+baseurl: ""
+url: ""
+
+# No theme — custom design
+theme: null
+
+# Exclude from build
+exclude:
+  - .gitignore
+  - README.md
+  - DEPLOY.md
+  - .github/
+  - .claude/
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Locale
+locale: "vi_VN"
