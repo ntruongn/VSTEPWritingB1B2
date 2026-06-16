@@ -28,8 +28,8 @@ git commit -m "Initial commit: VSTEP Writing Practice App"
 ### Bước 3: Kết Nối với GitHub
 
 ```bash
-# Thay YOUR_USERNAME bằng username GitHub của bạn
-git remote add origin https://github.com/YOUR_USERNAME/VSTEPWritingB1B2.git
+# Thay ntruongn bằng username GitHub của bạn
+git remote add origin https://github.com/ntruongn/VSTEPWritingB1B2.git
 git branch -M main
 git push -u origin main
 ```
@@ -46,7 +46,7 @@ git push -u origin main
 
 - GitHub sẽ tự động build và deploy
 - Kiểm tra tab **Actions** để xem tiến độ
-- Sau ~1-2 phút, trang sẽ có sẵn tại: `https://YOUR_USERNAME.github.io/VSTEPWritingB1B2`
+- Sau ~1-2 phút, trang sẽ có sẵn tại: `https://ntruongn.github.io/VSTEPWritingB1B2`
 
 ## 🔧 Tối Ưu Hóa
 
@@ -144,7 +144,7 @@ python3 -m http.server 8000
 # Truy cập: http://localhost:8000
 
 # Test production URL
-curl -I https://YOUR_USERNAME.github.io/VSTEPWritingB1B2
+curl -I https://ntruongn.github.io/VSTEPWritingB1B2
 ```
 
 ## 🔄 Update Code
