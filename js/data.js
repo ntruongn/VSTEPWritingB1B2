@@ -727,9 +727,7 @@ All in all, it is clear that studying overseas has its own merits and demerits. 
                   "Tóm lại, việc trở thành người nổi tiếng có cả những mặt tích cực và tiêu cực.",
                   "Theo quan điểm của tôi, con người có thể phải trả giá đất cho sự nổi tiếng, vì vậy sẽ tốt hơn nếu được sống một cuộc sống bình yên như những người bình thường."
             ],
-            b1Sample: `MÂU
-
-Being famous seems to be very attractive to people. Many people try to become famous because they can get many benefits. However, there are some drawbacks they have to face. This essay will discuss both advantages and disadvantages of being a famous person.
+            b1Sample: `Being famous seems to be very attractive to people. Many people try to become famous because they can get many benefits. However, there are some drawbacks they have to face. This essay will discuss both advantages and disadvantages of being a famous person.
 
 On the one hand, being famous brings people many benefits. Firstly, famous people can get a lot of money. For example, they have enough money to buy luxurious cars, expensive clothes and other things; therefore, they have a better and easier life than normal people. Secondly, famous people can get special treatment everywhere. Celebrities such as singers and actors often get good services and special things such as a special seat in public places or events. Finally, famous people have a lot of fans who admire them. They always receive love and support from their fans, so they have a good mental life.
 
@@ -1232,9 +1230,7 @@ In conclusion, homeschooling has both positive and negative sides. Parents shoul
                   "Nhìn chung, mặc dù có nhiều bất lợi thế nhưng các hoạt động ngoài lớp học rất cần thiết cho sự phát triển toàn diện của học sinh.",
                   "Học sinh nên được khuyến khích tham gia các hoạt động này."
             ],
-            b1Sample: `MÂU
-
-©
+            b1Sample: `©
 
 Nowadays, more and more students tend to do a lot of extracurricular activities besides learning school subjects. These activities bring them many advantages, but they also contain drawbacks. This essay will discuss both sides of doing outdoor activities.
 
@@ -3206,9 +3202,7 @@ The final reason is that <mark class="phrase">smokers <mark class="phrase">set a
                   "Tóm lại, những lợi ích mà giáo dục đại học và đào tạo nghề mang lại cho sinh viên rất rõ ràng.",
                   "Sinh viên cần cân nhắc kỹ vấn đề này để lựa chọn con đường học tập phù hợp với khả năng và sở thích của mình."
             ],
-            b1Sample: `MÂU
-
-Nowadays more and more high school students want to attend university instead of going to vocational schools. Therefore, there are not enough workers. While I accept that students should go to university, I also agree that taking vocational courses can be a choice for students leaving high school.
+            b1Sample: `Nowadays more and more high school students want to attend university instead of going to vocational schools. Therefore, there are not enough workers. While I accept that students should go to university, I also agree that taking vocational courses can be a choice for students leaving high school.
 
 On the one hand, there are benefits of going to university. Firstly, students can get a good job with a high salary after graduating from university. It is because most of the good jobs require them to have at least one university degree. Secondly, when attending university, students can gain deep knowledge and skills about their major. As a result, they can become professionals in their field and have high positions in the future. Lastly, university education is good for the society. Some jobs requiring the high level of skills and knowledge such as doctors and lawyers are very necessary for the development of the country.
 
@@ -4853,9 +4847,7 @@ In conclusion, although English has special roles in society, it cannot replace 
                   "Tóm lại, cà chính phù và các nhà giáo dục đều đóng vai trò quan trọng trong việc quyết định chương trình giáo dục quốc gia.",
                   "Theo tôi, cà hai bên đều có trách nhiệm chung trong việc lựa chọn chương trình giảng dạy phù hợp nhất và nâng cao chất lượng hệ thống giáo dục."
             ],
-            b1Sample: `MÂU
-
-While some people argue that central authorities should decide the subjects that children are taught in schools, others think that teachers should be responsible for choosing the curriculum. My essay will discuss both views and give my personal opinion.
+            b1Sample: `While some people argue that central authorities should decide the subjects that children are taught in schools, others think that teachers should be responsible for choosing the curriculum. My essay will discuss both views and give my personal opinion.
 
 On the one hand, school subjects should be decided by the government because of some following reasons. Firstly, central authorities can ensure the quality of teaching all over the country. They compare educational needs of different schools and decide education standards. Therefore, they can choose a suitable learning program for students throughout the country. This helps to gain the aims of education of the country. Secondly, they know needs of society well. Politicians know what knowledge and skills are needed in society. Therefore, they can decide subjects that are useful for students' life and help them have a good job in the future.
 
@@ -7449,9 +7441,7 @@ Another measure is that <mark class="phrase">schools could provide soft skill tr
                   "Tóm lại, có nhiều nguyên nhân khác nhau dẫn đến tỷ lệ chảy máu chất xám ngày càng tăng ở các nước đang phát triển.",
                   "Chính phủ nên thực hiện các chính sách được đề cập ở trên để thúc đầy thu hoạch tri thức và hạn chế chảy máu chất xám."
             ],
-            b1Sample: `MÂU
-
-Nowadays it is true that brain drain has become more popular in developing countries. A lot of highly skilled workers leave their home countries and move to developed countries. This essay will discuss some reasons for this trend and suggest solutions to it.
+            b1Sample: `Nowadays it is true that brain drain has become more popular in developing countries. A lot of highly skilled workers leave their home countries and move to developed countries. This essay will discuss some reasons for this trend and suggest solutions to it.
 
 There are several reasons why educated and skilled workers move to and stay in developed countries. First of all, developed countries have better living conditions. Specifically, there are many modern facilities with high quality for people to have a comfortable life there. Meanwhile, in developing countries, there is a lack of facilities to support people. The second reason for brain drain is that people want to get higher education in developed countries. Going to these countries, they can enjoy better education and learn with qualified teachers in famous universities. Therefore, they have higher level of education, which is good for their future life. Finally, skilled workers have more chances to develop their career in developed countries. For example, they can work in big companies and get a good job with high salary. As a result, they can have a better life with their family.
 
