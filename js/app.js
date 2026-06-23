@@ -12,6 +12,11 @@ let savedScores = JSON.parse(localStorage.getItem('vstep_scores') || '{}');
 let savedDrafts = JSON.parse(localStorage.getItem('vstep_drafts') || '{}');
 let currentSample = 'b2';
 
+// State for B2 sample recall & fill-in practice
+let practiceSentences = [];
+let activePracticeIdx = null;
+let hiddenPracticeIndices = new Set();
+
 function getActiveEssays() {
   return currentPart === 1 ? ESSAYS_PART1 : ESSAYS;
 }
@@ -295,6 +300,9 @@ function openEssay(essay) {
       <p>Viết bài xong và bấm <strong>"💾 Lưu nháp"</strong> để lưu tiến độ</p>
     </div>`;
 
+  // Initialize practice tab content for this essay
+  initPracticeMode();
+
   // Show B2 sample by default
   showSample('b2');
   switchTab('write');
@@ -304,7 +312,7 @@ function openEssay(essay) {
 
 // ─── TABS ────────────────────────────────────────────────────────────────────
 function switchTab(name) {
-  const tabNames = ['write', 'outline', 'vocab', 'sample', 'feedback'];
+  const tabNames = ['write', 'outline', 'vocab', 'sample', 'practice', 'feedback'];
   document.querySelectorAll('.tab').forEach((t, i) => {
     t.classList.toggle('active', tabNames[i] === name);
   });
@@ -631,6 +639,452 @@ document.addEventListener('keydown', (e) => {
     closeTranslationSheet();
   }
 });
+
+// ─── SENTENCE PRACTICE FEATURE ────────────────────────────────────────────────
+function initPracticeMode() {
+  if (!currentEssay) return;
+  
+  // 1. Get raw text and translation arrays for B2
+  const rawContent = currentEssay.b2Sample || "";
+  const translations = currentEssay.b2Trans || [];
+  
+  // 2. Clear state
+  practiceSentences = [];
+  activePracticeIdx = null;
+  hiddenPracticeIndices.clear();
+  
+  // Strip any (388 words) suffix if present at the end of rawContent
+  const cleanContent = rawContent.replace(/\(\d+\s+words\)\s*$/, "").trim();
+  
+  // 3. Parse content into paragraphs and sentences
+  // We want to keep the paragraph structure so we split by \n\n
+  const paragraphs = cleanContent.split(/\n\n+/);
+  const sentenceRegex = /[^.!?]+(?:[.!?]+(?=\s|$)|$)/g;
+  
+  let globalSentIdx = 0;
+  
+  const parsedParagraphs = paragraphs.map((paraText) => {
+    // Strip HTML marks from sample for sentence extraction
+    const cleanParaText = paraText.replace(/<\/?[^>]+(>|$)/g, "").trim();
+    const sentences = [];
+    let match;
+    while ((match = sentenceRegex.exec(cleanParaText)) !== null) {
+      const sText = match[0].trim();
+      if (sText) {
+        sentences.push(sText);
+      }
+    }
+    return sentences;
+  });
+  
+  // Flatten sentences list and map with translation
+  const allSentences = [];
+  parsedParagraphs.forEach((paraSentences, pIdx) => {
+    paraSentences.forEach((sentText) => {
+      // Find translation corresponding to this index
+      const transText = translations[globalSentIdx] || "";
+      allSentences.push({
+        index: globalSentIdx,
+        text: sentText,
+        translation: transText,
+        paragraphIdx: pIdx,
+        userInput: "",
+        checked: false,
+        score: 0,
+        showHint: false,
+        showAnswer: false,
+        diffHTMLUser: "",
+        diffHTMLTarget: ""
+      });
+      globalSentIdx++;
+    });
+  });
+  
+  practiceSentences = allSentences;
+  
+  // 4. Decide which indices to hide based on percentage
+  const hideSelect = document.getElementById('practice-hide-select');
+  const hideRatio = hideSelect ? parseFloat(hideSelect.value) : 0.5;
+  const totalSents = practiceSentences.length;
+  
+  if (hideRatio >= 1.0) {
+    // Hide all sentences
+    for (let i = 0; i < totalSents; i++) {
+      hiddenPracticeIndices.add(i);
+    }
+  } else {
+    // Hide random sentences based on ratio
+    const countToHide = Math.max(1, Math.round(totalSents * hideRatio));
+    const indices = Array.from({ length: totalSents }, (_, i) => i);
+    // Shuffle indices
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    // Take the first countToHide
+    for (let i = 0; i < countToHide; i++) {
+      hiddenPracticeIndices.add(indices[i]);
+    }
+  }
+  
+  // 5. Render elements
+  renderPracticeEssay(parsedParagraphs);
+  renderPracticeCards();
+  updatePracticeProgress();
+}
+
+function renderPracticeEssay(parsedParagraphs) {
+  const paper = document.getElementById('practice-essay-text');
+  if (!paper) return;
+  paper.innerHTML = "";
+  
+  let globalSentIdx = 0;
+  
+  parsedParagraphs.forEach((paraSentences, pIdx) => {
+    const pEl = document.createElement('p');
+    
+    paraSentences.forEach((sentText) => {
+      const isHidden = hiddenPracticeIndices.has(globalSentIdx);
+      const sentObj = practiceSentences[globalSentIdx];
+      
+      if (isHidden) {
+        // Render inline blank pill button
+        const blankBtn = document.createElement('button');
+        blankBtn.className = `practice-blank-btn ${globalSentIdx === activePracticeIdx ? 'active' : ''} ${sentObj.checked && sentObj.score >= 85 ? 'correct' : ''}`;
+        blankBtn.id = `practice-blank-${globalSentIdx}`;
+        // If checked, show score, else show generic placeholder
+        if (sentObj.checked) {
+          blankBtn.textContent = `✏️ Câu ${globalSentIdx + 1} (${sentObj.score}%)`;
+        } else {
+          blankBtn.textContent = `✏️ Câu ${globalSentIdx + 1}: Điền câu`;
+        }
+        
+        const idx = globalSentIdx;
+        blankBtn.onclick = (e) => {
+          e.preventDefault();
+          focusPracticeCard(idx);
+        };
+        pEl.appendChild(blankBtn);
+        // Add a space after the inline button
+        pEl.appendChild(document.createTextNode(" "));
+      } else {
+        // Render normal text
+        const textSpan = document.createElement('span');
+        textSpan.textContent = sentText + " ";
+        pEl.appendChild(textSpan);
+      }
+      globalSentIdx++;
+    });
+    
+    paper.appendChild(pEl);
+  });
+}
+
+function renderPracticeCards() {
+  const listEl = document.getElementById('practice-cards-list');
+  if (!listEl) return;
+  listEl.innerHTML = "";
+  
+  let hasBlanks = false;
+  
+  practiceSentences.forEach((sentObj) => {
+    if (!hiddenPracticeIndices.has(sentObj.index)) return;
+    hasBlanks = true;
+    
+    const card = document.createElement('div');
+    card.className = `practice-card ${sentObj.index === activePracticeIdx ? 'active' : ''}`;
+    card.id = `practice-card-${sentObj.index}`;
+    
+    // Status text
+    let statusText = "Chưa làm";
+    let statusColor = "var(--ink-muted)";
+    if (sentObj.checked) {
+      statusText = `Đã kiểm tra (${sentObj.score}%)`;
+      statusColor = sentObj.score >= 85 ? "var(--success)" : sentObj.score >= 50 ? "var(--primary)" : "var(--danger)";
+    }
+    
+    // Generate First Letter Hint
+    const letterHint = generateFirstLetterHint(sentObj.text);
+    
+    card.innerHTML = `
+      <div class="practice-card-header">
+        <h5>Câu ${sentObj.index + 1} (Đoạn ${sentObj.paragraphIdx + 1})</h5>
+        <span class="practice-card-status" style="color: ${statusColor}">${statusText}</span>
+      </div>
+      
+      <div class="practice-card-prompt">
+        ${sentObj.translation || "Chưa có bản dịch cho câu này."}
+      </div>
+      
+      ${sentObj.showHint ? `
+        <div class="practice-card-hint-text" title="Gợi ý chữ cái đầu">
+          💡 ${letterHint}
+        </div>
+      ` : ""}
+      
+      <textarea class="practice-card-input" 
+        placeholder="Gợi ý: Viết lại câu bằng tiếng Anh..."
+        id="practice-input-${sentObj.index}"
+        oninput="practiceSentences[${sentObj.index}].userInput = this.value">${sentObj.userInput}</textarea>
+        
+      <div class="practice-card-actions">
+        <button class="practice-card-btn btn-check" onclick="checkPracticeSentence(${sentObj.index})">Kiểm tra</button>
+        <button class="practice-card-btn" onclick="togglePracticeHint(${sentObj.index})">${sentObj.showHint ? "Ẩn gợi ý" : "Gợi ý"}</button>
+        <button class="practice-card-btn" onclick="showPracticeAnswer(${sentObj.index})">Đáp án mẫu</button>
+      </div>
+      
+      ${sentObj.checked ? `
+        <div class="practice-card-feedback">
+          <div class="feedback-score-row">
+            <span>Đoạn văn của bạn:</span>
+            <span class="score-val ${sentObj.score >= 85 ? 'perfect' : sentObj.score >= 50 ? 'good' : 'poor'}">${sentObj.score}% khớp</span>
+          </div>
+          
+          <div class="feedback-section-title">Bài làm của bạn</div>
+          <div class="feedback-diff-block">
+            ${sentObj.diffHTMLUser}
+          </div>
+          
+          <div class="feedback-section-title">Đáp án mẫu B2</div>
+          <div class="feedback-diff-block">
+            ${sentObj.diffHTMLTarget}
+          </div>
+        </div>
+      ` : ""}
+    `;
+    
+    // Scroll trigger click handler to focus on blank
+    card.addEventListener('click', () => {
+      setActivePracticeBlank(sentObj.index);
+    });
+    
+    listEl.appendChild(card);
+  });
+  
+  if (!hasBlanks) {
+    listEl.innerHTML = `
+      <div class="empty-feedback">
+        <div class="icon">✨</div>
+        <p>Không có câu nào bị ẩn. Hãy điều chỉnh tỷ lệ ẩn câu ở trên.</p>
+      </div>
+    `;
+  }
+}
+
+function setActivePracticeBlank(index) {
+  activePracticeIdx = index;
+  // Highlight pill in essay
+  document.querySelectorAll('.practice-blank-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.id === `practice-blank-${index}`);
+  });
+  // Highlight card in list
+  document.querySelectorAll('.practice-card').forEach(card => {
+    card.classList.toggle('active', card.id === `practice-card-${index}`);
+  });
+}
+
+function focusPracticeCard(index) {
+  setActivePracticeBlank(index);
+  
+  // Scroll to active card
+  const card = document.getElementById(`practice-card-${index}`);
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function togglePracticeHint(index) {
+  const sentObj = practiceSentences[index];
+  if (!sentObj) return;
+  sentObj.showHint = !sentObj.showHint;
+  renderPracticeCards();
+}
+
+function showPracticeAnswer(index) {
+  const sentObj = practiceSentences[index];
+  if (!sentObj) return;
+  
+  // Fill the input with correct answer (strip HTML class tags for user display)
+  const cleanTarget = sentObj.text.replace(/<\/?[^>]+(>|$)/g, "");
+  sentObj.userInput = cleanTarget;
+  sentObj.showAnswer = true;
+  
+  // Set the text in the textarea DOM element if it is visible
+  const inputEl = document.getElementById(`practice-input-${index}`);
+  if (inputEl) {
+    inputEl.value = cleanTarget;
+  }
+  
+  // Perform check automatically to show comparison
+  checkPracticeSentence(index);
+}
+
+function checkPracticeSentence(index) {
+  const sentObj = practiceSentences[index];
+  if (!sentObj) return;
+  
+  // Make sure we read the latest text input value from DOM
+  const inputEl = document.getElementById(`practice-input-${index}`);
+  if (inputEl) {
+    sentObj.userInput = inputEl.value;
+  }
+  
+  const inputVal = sentObj.userInput || "";
+  
+  // Compute LCS diff
+  const diffResult = getWordDiffHTML(inputVal, sentObj.text);
+  
+  sentObj.checked = true;
+  sentObj.score = diffResult.score;
+  sentObj.diffHTMLUser = diffResult.userHTML;
+  sentObj.diffHTMLTarget = diffResult.targetHTML;
+  
+  // Re-render
+  const hideSelect = document.getElementById('practice-hide-select');
+  const hideRatio = hideSelect ? parseFloat(hideSelect.value) : 0.5;
+  const rawContent = currentEssay.b2Sample || "";
+  const cleanContent = rawContent.replace(/\(\d+\s+words\)\s*$/, "").trim();
+  const paragraphs = cleanContent.split(/\n\n+/);
+  const sentenceRegex = /[^.!?]+(?:[.!?]+(?=\s|$)|$)/g;
+  const parsedParagraphs = paragraphs.map(p => {
+    const cleanP = p.replace(/<\/?[^>]+(>|$)/g, "").trim();
+    const sents = [];
+    let match;
+    while ((match = sentenceRegex.exec(cleanP)) !== null) {
+      if (match[0].trim()) sents.push(match[0].trim());
+    }
+    return sents;
+  });
+  
+  renderPracticeEssay(parsedParagraphs);
+  renderPracticeCards();
+  updatePracticeProgress();
+  
+  // Refocus the card if it was active
+  setActivePracticeBlank(index);
+}
+
+function updatePracticeProgress() {
+  let hiddenCount = 0;
+  let correctCount = 0;
+  
+  practiceSentences.forEach((sentObj) => {
+    if (hiddenPracticeIndices.has(sentObj.index)) {
+      hiddenCount++;
+      if (sentObj.checked && sentObj.score >= 85) {
+        correctCount++;
+      }
+    }
+  });
+  
+  const fill = document.getElementById('practice-progress-fill');
+  const text = document.getElementById('practice-progress-text');
+  
+  if (fill && text) {
+    const pct = hiddenCount > 0 ? Math.round((correctCount / hiddenCount) * 100) : 0;
+    fill.style.width = `${pct}%`;
+    text.textContent = `Đã hoàn thành (độ khớp >= 85%): ${correctCount} / ${hiddenCount} câu (${pct}%)`;
+  }
+}
+
+function generateFirstLetterHint(sentence) {
+  // Strip HTML tags if any
+  const clean = sentence.replace(/<\/?[^>]+(>|$)/g, "");
+  // Replace alphanumeric characters after their first letter with underscores
+  return clean.split(/\s+/).map(word => {
+    if (word.length <= 1) return word;
+    // Handle punctuation at the end of the word
+    const match = word.match(/^([a-zA-Z0-9'-]+)([^a-zA-Z0-9'-]*)$/);
+    if (match) {
+      const core = match[1];
+      const punc = match[2];
+      if (core.length <= 1) return word;
+      return core[0] + '_'.repeat(core.length - 1) + punc;
+    }
+    return word;
+  }).join(' ');
+}
+
+function getWordDiffHTML(userVal, targetVal) {
+  // Strip HTML tags from target
+  const cleanTarget = targetVal.replace(/<\/?[^>]+(>|$)/g, "");
+  
+  // Split by whitespace
+  const userWords = userVal.trim().split(/\s+/).filter(w => w);
+  const targetWords = cleanTarget.trim().split(/\s+/).filter(w => w);
+  
+  const m = userWords.length;
+  const n = targetWords.length;
+  
+  if (m === 0) {
+    return {
+      score: 0,
+      userHTML: `<span style="color:var(--ink-muted); font-style:italic;">Trống</span>`,
+      targetHTML: targetWords.map(word => `<span class="diff-missing">${word}</span>`).join(' ')
+    };
+  }
+  
+  // LCS Table
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+  
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const w1 = userWords[i-1].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+      const w2 = targetWords[j-1].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+      if (w1 === w2) {
+        dp[i][j] = dp[i-1][j-1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+      }
+    }
+  }
+  
+  // Backtrack to find matched indices
+  let i = m, j = n;
+  const userMatched = new Set();
+  const targetMatched = new Set();
+  
+  while (i > 0 && j > 0) {
+    const w1 = userWords[i-1].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+    const w2 = targetWords[j-1].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+    if (w1 === w2) {
+      userMatched.add(i - 1);
+      targetMatched.add(j - 1);
+      i--;
+      j--;
+    } else if (dp[i-1][j] >= dp[i][j-1]) {
+      i--;
+    } else {
+      j--;
+    }
+  }
+  
+  // Render user words
+  let userHTML = userWords.map((word, idx) => {
+    if (userMatched.has(idx)) {
+      return `<span class="diff-match">${word}</span>`;
+    } else {
+      return `<span class="diff-mismatch">${word}</span>`;
+    }
+  }).join(' ');
+  
+  // Render target words
+  let targetHTML = targetWords.map((word, idx) => {
+    if (targetMatched.has(idx)) {
+      return `<span>${word}</span>`;
+    } else {
+      return `<span class="diff-missing">${word}</span>`;
+    }
+  }).join(' ');
+  
+  const score = Math.max(0, Math.min(100, Math.round((dp[m][n] / Math.max(1, n)) * 100)));
+  
+  return {
+    score,
+    userHTML,
+    targetHTML
+  };
+}
 
 // ─── BOOT ────────────────────────────────────────────────────────────────────
 init();

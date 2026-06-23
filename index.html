@@ -170,6 +170,7 @@
         <button class="tab" id="tab-btn-outline" onclick="switchTab('outline')">📐 Dàn ý</button>
         <button class="tab" id="tab-btn-vocab" onclick="switchTab('vocab')">💬 Từ vựng B2</button>
         <button class="tab" onclick="switchTab('sample')">📖 Bài mẫu</button>
+        <button class="tab" id="tab-btn-practice" onclick="switchTab('practice')">🧠 Luyện câu</button>
         <button class="tab" onclick="switchTab('feedback')">📊 Tiến độ</button>
       </div>
 
@@ -213,6 +214,43 @@
         <div class="sample-essay" id="sample-content"></div>
         <div class="sample-legend">
           💡 <span style="background:#fef9c3;padding:1px 6px;border-radius:3px;">Vàng</span> = cụm từ hay &nbsp;|&nbsp; <span style="background:#dbeafe;padding:1px 6px;border-radius:3px;font-weight:600;">Xanh</span> = cấu trúc B2 &nbsp;|&nbsp; <span class="desktop-help">🖱️ Rê chuột vào câu để xem bản dịch tiếng Việt</span><span class="mobile-help">📱 Chạm vào câu để xem bản dịch tiếng Việt</span>
+        </div>
+      </div>
+
+      <!-- Practice Tab -->
+      <div class="tab-panel" id="tab-practice">
+        <div class="practice-header">
+          <div class="practice-title-row">
+            <h3>🧠 Luyện dịch &amp; Gợi nhớ câu B2</h3>
+            <div class="practice-actions">
+              <label for="practice-hide-select">Tỷ lệ ẩn câu:</label>
+              <select id="practice-hide-select" onchange="initPracticeMode()">
+                <option value="0.25">Ẩn 25% (Dễ)</option>
+                <option value="0.5" selected>Ẩn 50% (Trung bình)</option>
+                <option value="1.0">Ẩn 100% (Thử thách)</option>
+              </select>
+              <button class="practice-action-btn" onclick="initPracticeMode()">🔄 Trộn lại</button>
+            </div>
+          </div>
+          <p class="practice-desc">Luyện dịch từng câu của bài mẫu B2 từ tiếng Việt sang tiếng Anh. Click vào phần câu trống trong văn bản để định vị nhanh thẻ luyện dịch tương ứng.</p>
+        </div>
+        
+        <div class="practice-progress-banner">
+          <div class="pr-progress-track">
+            <div class="pr-progress-fill" id="practice-progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="pr-progress-text" id="practice-progress-text">Đã hoàn thành: 0 / 0 câu (0%)</div>
+        </div>
+
+        <div class="practice-layout">
+          <div class="practice-essay-column">
+            <h4>📖 Bài mẫu với câu trống</h4>
+            <div class="practice-essay-paper" id="practice-essay-text"></div>
+          </div>
+          <div class="practice-cards-column">
+            <h4>✍️ Luyện dịch chi tiết</h4>
+            <div class="practice-cards-list" id="practice-cards-list"></div>
+          </div>
         </div>
       </div>
 
