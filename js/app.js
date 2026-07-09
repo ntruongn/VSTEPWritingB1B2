@@ -98,10 +98,93 @@ function closeMobileMenu() {
 function init() {
   initTheme();
   initHeaderToggle();
-  syncPartSelectors();
-  buildSidebar();
-  buildEssayGrid();
-  updateStats();
+  
+  // Set up router
+  window.addEventListener('hashchange', handleRouting);
+  
+  // If no hash, set initial hash from localStorage
+  if (!window.location.hash) {
+    const savedPart = localStorage.getItem('vstep_current_part') || '2';
+    window.location.hash = `#/part/${savedPart}`;
+  } else {
+    handleRouting();
+  }
+}
+
+function handleRouting() {
+  const hash = window.location.hash || '';
+  
+  if (!hash || hash === '#/' || hash === '#/home') {
+    const savedPart = localStorage.getItem('vstep_current_part') || '2';
+    window.location.hash = `#/part/${savedPart}`;
+    return;
+  }
+  
+  const partMatch = hash.match(/^#\/part\/(\d+)(?:\/(.*))?$/);
+  if (partMatch) {
+    const partNum = parseInt(partMatch[1], 10);
+    const subType = partMatch[2]; // e.g. 'discussion' for Part 3
+    
+    currentPart = partNum;
+    localStorage.setItem('vstep_current_part', currentPart);
+    syncPartSelectors();
+    showHome();
+    
+    if (partNum === 3 && subType) {
+      const iframe = document.getElementById('trainer-iframe');
+      if (iframe) {
+        const targetSrc = `template_writing/ielts-pattern-trainer.html?type=${subType}`;
+        const currentSrc = iframe.getAttribute('src');
+        if (!currentSrc || !currentSrc.includes(`type=${subType}`)) {
+          iframe.setAttribute('src', targetSrc);
+        } else {
+          try {
+            if (iframe.contentWindow && typeof iframe.contentWindow.selectEssayType === 'function') {
+              iframe.contentWindow.selectEssayType(subType);
+            }
+          } catch(e){}
+        }
+      }
+    }
+    return;
+  }
+  
+  const essayMatch = hash.match(/^#\/essay\/p(\d)\/(\d+)$/);
+  if (essayMatch) {
+    const partNum = parseInt(essayMatch[1], 10);
+    const essayId = parseInt(essayMatch[2], 10);
+    
+    if (currentPart !== partNum) {
+      currentPart = partNum;
+      localStorage.setItem('vstep_current_part', currentPart);
+      syncPartSelectors();
+    }
+    
+    const list = partNum === 1 ? ESSAYS_PART1 : ESSAYS;
+    const essay = list.find(e => e.id === essayId);
+    if (essay) {
+      openEssay(essay);
+    } else {
+      window.location.hash = '#/';
+    }
+    return;
+  }
+}
+
+function openPatternForCurrentEssay() {
+  if (!currentEssay) return;
+  const map = {
+    adv: 'advantages-disadvantages',
+    discussion: 'discussion',
+    opinion: 'opinion',
+    problem: 'problem-solution'
+  };
+  const typeKey = map[currentEssay.type];
+  if (typeKey) {
+    window.location.hash = `#/part/3/${typeKey}`;
+  } else {
+    window.location.hash = `#/part/3`;
+  }
 }
 
 function toggleHeader() {
@@ -168,10 +251,7 @@ function syncPartSelectors() {
 }
 
 function switchPart(partNum) {
-  currentPart = partNum;
-  localStorage.setItem('vstep_current_part', currentPart);
-  syncPartSelectors();
-  showHome();
+  window.location.hash = `#/part/${partNum}`;
 }
 
 // ─── SIDEBAR ─────────────────────────────────────────────────────────────────
@@ -278,6 +358,12 @@ function showHome() {
 }
 
 function openEssay(essay) {
+  const targetHash = `#/essay/p${essay.part}/${essay.id}`;
+  if (window.location.hash !== targetHash) {
+    window.location.hash = targetHash;
+    return;
+  }
+
   currentEssay = essay;
   closeTranslationSheet();
 
@@ -295,10 +381,11 @@ function openEssay(essay) {
   badge.textContent = essay.typeLabel;
   badge.className = `topic-badge ${badgeMap[essay.type]}`;
 
-  // Hide or show Outline/Vocab tabs based on availability
+  // Hide or show Outline/Vocab/Pattern tabs based on availability
   const hasOutlineAndVocab = essay.part !== 1;
   document.getElementById('tab-btn-outline').style.display = hasOutlineAndVocab ? 'inline-block' : 'none';
   document.getElementById('tab-btn-vocab').style.display = hasOutlineAndVocab ? 'inline-block' : 'none';
+  document.getElementById('tab-btn-pattern').style.display = hasOutlineAndVocab ? 'inline-block' : 'none';
 
   // Set minimum word limit label
   const targetWords = essay.part === 1 ? 120 : 250;
@@ -372,12 +459,13 @@ function openEssay(essay) {
 
 // ─── TABS ────────────────────────────────────────────────────────────────────
 function switchTab(name) {
-  const tabNames = ['write', 'outline', 'vocab', 'sample', 'practice', 'feedback'];
-  document.querySelectorAll('.tab').forEach((t, i) => {
-    t.classList.toggle('active', tabNames[i] === name);
+  document.querySelectorAll('.tabs button').forEach(btn => {
+    const isTarget = btn.getAttribute('onclick')?.includes(`'${name}'`);
+    btn.classList.toggle('active', !!isTarget);
   });
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById(`tab-${name}`).classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.toggle('active', p.id === `tab-${name}`);
+  });
   closeTranslationSheet();
 }
 
