@@ -49,6 +49,7 @@
   --font-serif: 'Crimson Pro', Georgia, serif;
 
   --header-h: 64px;
+  --curr-header-h: var(--header-h);
   --sidebar-w: 300px;
 
   --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -115,7 +116,7 @@ body {
    HEADER
    ═══════════════════════════════════════════════════════════ */
 header {
-  height: var(--header-h);
+  height: var(--curr-header-h);
   background: var(--bg-elevated);
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -127,6 +128,8 @@ header {
   z-index: 200;
   backdrop-filter: blur(12px);
   background: rgba(255,255,255,0.85);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
 [data-theme="dark"] header {
@@ -231,7 +234,8 @@ header {
    ═══════════════════════════════════════════════════════════ */
 .app {
   display: flex;
-  height: calc(100vh - var(--header-h));
+  height: calc(100vh - var(--curr-header-h));
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Sidebar ── */
@@ -2000,5 +2004,40 @@ header {
   font-weight: 600;
   padding: 0 2px;
   border-radius: 2px;
+}
+
+/* ── Header Collapsible Classes & Trainer Iframe ── */
+body.header-hidden {
+  --curr-header-h: 0px;
+}
+body.header-hidden header {
+  transform: translateY(-100%);
+  margin-top: -64px;
+  height: 0;
+  border-bottom-width: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none;
+}
+body.header-hidden .header-toggle-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  pointer-events: auto;
+}
+
+#trainer-iframe {
+  width: 100%;
+  height: calc(100vh - var(--curr-header-h));
+  border: none;
+  display: block;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

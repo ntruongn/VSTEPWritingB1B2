@@ -61,6 +61,19 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('vstep_theme', next);
   updateThemeIcon(next);
+  
+  // Notify the iframe to keep themes in sync
+  const iframe = document.getElementById('trainer-iframe');
+  if (iframe && iframe.contentWindow) {
+    try {
+      iframe.contentWindow.document.documentElement.setAttribute('data-theme', next);
+      if (typeof iframe.contentWindow.onThemeChange === 'function') {
+        iframe.contentWindow.onThemeChange(next);
+      }
+    } catch (e) {
+      console.warn('Could not sync theme with iframe', e);
+    }
+  }
 }
 
 function updateThemeIcon(theme) {
@@ -84,10 +97,34 @@ function closeMobileMenu() {
 // ─── INIT ────────────────────────────────────────────────────────────────────
 function init() {
   initTheme();
+  initHeaderToggle();
   syncPartSelectors();
   buildSidebar();
   buildEssayGrid();
   updateStats();
+}
+
+function toggleHeader() {
+  const body = document.body;
+  const isHidden = body.classList.toggle('header-hidden');
+  const btn = document.getElementById('header-toggle-btn');
+  if (btn) {
+    btn.textContent = isHidden ? '▼' : '▲';
+    btn.title = isHidden ? 'Hiện thanh tiêu đề' : 'Ẩn thanh tiêu đề';
+  }
+  localStorage.setItem('vstep_header_hidden', isHidden ? 'true' : 'false');
+}
+
+function initHeaderToggle() {
+  const isHidden = localStorage.getItem('vstep_header_hidden') === 'true';
+  if (isHidden) {
+    document.body.classList.add('header-hidden');
+    const btn = document.getElementById('header-toggle-btn');
+    if (btn) {
+      btn.textContent = '▼';
+      btn.title = 'Hiện thanh tiêu đề';
+    }
+  }
 }
 
 function syncPartSelectors() {
