@@ -491,11 +491,128 @@ h1 {
 }
 
 @media (max-width:560px){
-  h1{ font-size:38px; }
-  .face{ padding:24px 20px; }
-  .meaning-text{ font-size:17px; }
-  .template-text{ font-size:15.5px; }
-  .essay-btn{ font-size:11px; padding:8px 12px; }
+  .wrap {
+    padding: 16px 12px 48px;
+  }
+  header.top {
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 34px;
+  }
+  .sub {
+    font-size: 13.5px;
+  }
+  
+  /* Horizontal scrollable menus for mobile */
+  .essay-switch {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 4px 8px;
+    margin: 12px -12px 16px -12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .essay-switch::-webkit-scrollbar {
+    display: none;
+  }
+  .essay-btn {
+    flex: 0 0 auto;
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+  
+  .tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 4px 8px;
+    margin: 8px -12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .tab {
+    flex: 0 0 auto;
+    font-size: 11.5px;
+    padding: 8px 12px;
+  }
+  
+  .progress-row {
+    margin: 10px 0 20px;
+    gap: 6px;
+    justify-content: space-between;
+  }
+  .progress-track {
+    width: 120px;
+  }
+  .toggle-container {
+    font-size: 11px;
+  }
+  
+  .mode-switch {
+    margin-bottom: 20px;
+  }
+  .mode-btn {
+    padding: 8px 14px;
+    font-size: 11.5px;
+  }
+  
+  .card {
+    min-height: 260px;
+  }
+  .face {
+    padding: 20px 16px;
+  }
+  .face-label {
+    font-size: 9.5px;
+    margin-bottom: 8px;
+  }
+  .meaning-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .template-text {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .example-box {
+    margin-top: 12px;
+    padding-top: 10px;
+    font-size: 13px;
+  }
+  .example-box b {
+    font-size: 9px;
+    margin-bottom: 4px;
+  }
+  
+  /* Quiz Mobile */
+  .quiz-meaning {
+    padding: 18px 20px;
+    font-size: 15.5px;
+    margin-bottom: 14px;
+  }
+  .opt {
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+  
+  /* Type Mobile */
+  .type-meaning, .type-template-ref {
+    padding: 12px 16px;
+    font-size: 13.5px;
+  }
+  .type-area-wrap {
+    padding: 16px 14px;
+    min-height: 100px;
+  }
+  .type-target-container {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
 }
 </style>
 </head>
