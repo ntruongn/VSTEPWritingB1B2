@@ -81,12 +81,17 @@ function updateThemeIcon(theme) {
   if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
-// ─── MOBILE MENU ─────────────────────────────────────────────────────────────
-function toggleMobileMenu() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebar-overlay');
-  sidebar.classList.toggle('open');
-  overlay.classList.toggle('active');
+// ─── SIDEBAR TOGGLE & NAVIGATION ──────────────────────────────────────────────
+function toggleSidebar() {
+  if (window.innerWidth <= 768) {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  } else {
+    const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
+    localStorage.setItem('vstep_sidebar_collapsed', isCollapsed ? 'true' : 'false');
+  }
 }
 
 function closeMobileMenu() {
@@ -94,10 +99,17 @@ function closeMobileMenu() {
   document.getElementById('sidebar-overlay').classList.remove('active');
 }
 
+function initSidebarState() {
+  const isCollapsed = localStorage.getItem('vstep_sidebar_collapsed') === 'true';
+  if (isCollapsed && window.innerWidth > 768) {
+    document.body.classList.add('sidebar-collapsed');
+  }
+}
+
 // ─── INIT ────────────────────────────────────────────────────────────────────
 function init() {
   initTheme();
-  initHeaderToggle();
+  initSidebarState();
   
   // Set up router
   window.addEventListener('hashchange', handleRouting);
@@ -187,28 +199,7 @@ function openPatternForCurrentEssay() {
   }
 }
 
-function toggleHeader() {
-  const body = document.body;
-  const isHidden = body.classList.toggle('header-hidden');
-  const btn = document.getElementById('header-toggle-btn');
-  if (btn) {
-    btn.textContent = isHidden ? '▼' : '▲';
-    btn.title = isHidden ? 'Hiện thanh tiêu đề' : 'Ẩn thanh tiêu đề';
-  }
-  localStorage.setItem('vstep_header_hidden', isHidden ? 'true' : 'false');
-}
-
-function initHeaderToggle() {
-  const isHidden = localStorage.getItem('vstep_header_hidden') === 'true';
-  if (isHidden) {
-    document.body.classList.add('header-hidden');
-    const btn = document.getElementById('header-toggle-btn');
-    if (btn) {
-      btn.textContent = '▼';
-      btn.title = 'Hiện thanh tiêu đề';
-    }
-  }
-}
+// Collapsible header feature disabled
 
 function syncPartSelectors() {
   // Sidebar
