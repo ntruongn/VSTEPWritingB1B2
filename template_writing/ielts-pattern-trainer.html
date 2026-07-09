@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Sổ tay mẫu câu viết IELTS / VSTEP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght=500;600;700&family=Literata:ital,opsz,wght@0,18..144,400;0,18..144,500;0,18..144,600;1,18..144,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #1e3d32;
+  --bg-alt: #234a3b;
+  --bg-deep: #173229;
+  --chalk: #f5f1e6;
+  --chalk-dim: #c7d0c2;
+  --gold: #f2c14e;
+  --red: #e4572e;
+  --green-ok: #8fbf8a;
+  --line: rgba(245,241,230,0.16);
+}
+* {box-sizing:border-box;}
+html,body {margin:0;padding:0;}
+body {
+  background:
+    radial-gradient(ellipse at 20% -10%, rgba(242,193,78,0.07), transparent 55%),
+    radial-gradient(ellipse at 90% 110%, rgba(228,87,46,0.08), transparent 55%),
+    var(--bg);
+  color:var(--chalk);
+  font-family:'Literata', serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+.chalk-noise {
+  position:fixed; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay; z-index:0;
+}
+.wrap {
+  max-width:920px;
+  margin:0 auto;
+  padding:28px 20px 64px;
+  position:relative;
+  z-index:1;
+}
+header.top {
+  text-align:center;
+  margin-bottom:22px;
+}
+.eyebrow {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:0.85;
+}
+h1 {
+  font-family:'Caveat', cursive;
+  font-weight:700;
+  font-size:52px;
+  margin:6px 0 4px;
+  color:var(--chalk);
+  text-shadow:0 0 18px rgba(245,241,230,0.12);
+}
+.sub {
+  color:var(--chalk-dim);
+  font-size:15px;
+  max-width:620px;
+  margin:0 auto;
+}
+
+/* essay switcher segmented control */
+.essay-switch {
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin:24px 0 12px;
+  flex-wrap:wrap;
+}
+.essay-btn {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  padding:10px 16px;
+  border-radius:4px;
+  border:1px solid var(--line);
+  background:rgba(245,241,230,0.02);
+  color:var(--chalk-dim);
+  cursor:pointer;
+  transition:all .15s ease;
+}
+.essay-btn:hover { background:rgba(245,241,230,0.08); color:var(--chalk); }
+.essay-btn.active {
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--bg-deep);
+  font-weight:600;
+  box-shadow:0 4px 12px rgba(242,193,78,0.15);
+}
+
+/* section tabs */
+.tabs {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  margin:16px 0 8px;
+}
+.tab {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12.5px;
+  letter-spacing:0.02em;
+  padding:9px 14px;
+  border-radius:3px;
+  border:1px solid var(--line);
+  background:rgba(245,241,230,0.03);
+  color:var(--chalk-dim);
+  cursor:pointer;
+  transition:all .15s ease;
+  white-space:nowrap;
+}
+.tab:hover { background:rgba(245,241,230,0.08); color:var(--chalk); }
+.tab.active {
+  background:var(--chalk);
+  border-color:var(--chalk);
+  color:var(--bg-deep);
+  font-weight:600;
+}
+.tab .cnt { opacity:0.65; font-size:11px; margin-left:4px; }
+
+/* progress row */
+.progress-row {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  justify-content:center;
+  margin:14px 0 26px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--chalk-dim);
+  flex-wrap:wrap;
+}
+.progress-track {
+  width:200px; height:6px; border-radius:3px;
+  background:rgba(245,241,230,0.12);
+  overflow:hidden;
+}
+.progress-fill {
+  height:100%; background:linear-gradient(90deg, var(--gold), var(--green-ok));
+  transition:width .3s ease;
+}
+
+/* toggle switch styling */
+.toggle-container {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--chalk-dim);
+  user-select: none;
+}
+.toggle-container input {
+  display: none;
+}
+.toggle-switch {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  background: rgba(245,241,230,0.12);
+  border-radius: 9px;
+  margin-right: 8px;
+  transition: background 0.2s;
+}
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--chalk-dim);
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s, background 0.2s;
+}
+.toggle-container input:checked + .toggle-switch {
+  background: var(--gold);
+}
+.toggle-container input:checked + .toggle-switch::after {
+  transform: translateX(14px);
+  background: var(--bg-deep);
+}
+
+/* mode switch */
+.mode-switch {
+  display:flex; justify-content:center; gap:0; margin-bottom:30px;
+}
+.mode-btn {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12.5px;
+  padding:8px 20px;
+  background:transparent;
+  color:var(--chalk-dim);
+  border:1px solid var(--line);
+  cursor:pointer;
+}
+.mode-btn:first-child { border-radius:20px 0 0 20px; }
+.mode-btn:nth-child(2) { border-left:none; border-right:none; }
+.mode-btn:last-child { border-radius:0 20px 20px 0; }
+.mode-btn.active { background:rgba(245,241,230,0.1); color:var(--chalk); }
+
+/* card */
+.card-stage {
+  perspective:1400px;
+  max-width:680px;
+  margin:0 auto;
+}
+.card {
+  position:relative;
+  min-height:300px;
+  border-radius:8px;
+  cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.4,.2,.2,1);
+}
+.card.flipped { transform:rotateY(180deg); }
+.face {
+  position:absolute; inset:0;
+  backface-visibility:hidden;
+  border-radius:8px;
+  padding:34px 32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:
+    linear-gradient(180deg, rgba(245,241,230,0.05), rgba(245,241,230,0.02)),
+    var(--bg-alt);
+  border:1px solid var(--line);
+  box-shadow:0 18px 40px -20px rgba(0,0,0,0.5);
+}
+.face.back { transform:rotateY(180deg); }
+.face-label {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10.5px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+.meaning-text {
+  font-size:19px;
+  line-height:1.6;
+  color:var(--chalk);
+}
+.template-text {
+  font-size:17px;
+  line-height:1.75;
+  color:var(--chalk);
+}
+.template-text .blank {
+  color:var(--gold);
+  border-bottom:1px dashed rgba(242,193,78,0.6);
+  padding:0 2px;
+}
+.example-box {
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px dashed var(--line);
+  font-size:14.5px;
+  color:var(--chalk-dim);
+  font-style:italic;
+  line-height:1.6;
+}
+.example-box b { color:var(--green-ok); font-style:normal; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:6px;}
+.tap-hint {
+  position:absolute; bottom:12px; right:16px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10px; color:var(--chalk-dim); opacity:0.5;
+}
+
+.card-nav {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin-top:22px;
+}
+.nav-btn {
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--chalk);
+  width:40px;height:40px;
+  border-radius:50%;
+  font-size:16px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.15s;
+}
+.nav-btn:hover { background:rgba(245,241,230,0.08); }
+.counter {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px; color:var(--chalk-dim); min-width:60px; text-align:center;
+}
+.master-btn {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  padding:9px 18px;
+  border-radius:20px;
+  border:1px solid var(--green-ok);
+  background:transparent;
+  color:var(--green-ok);
+  cursor:pointer;
+  transition:.15s;
+}
+.master-btn.on {
+  background:var(--green-ok);
+  color:var(--bg-deep);
+  font-weight:600;
+}
+
+/* quiz */
+.quiz-box { max-width:680px; margin:0 auto; }
+.quiz-meaning {
+  background:var(--bg-alt);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:26px 28px;
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+.quiz-meaning .tag {
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10.5px; letter-spacing:0.15em; text-transform:uppercase;
+  color:var(--gold); display:block; margin-bottom:10px;
+}
+.options { display:flex; flex-direction:column; gap:10px; }
+.opt {
+  text-align:left;
+  background:rgba(245,241,230,0.03);
+  border:1px solid var(--line);
+  color:var(--chalk);
+  padding:14px 16px;
+  border-radius:6px;
+  font-family:'Literata', serif;
+  font-size:14.5px;
+  line-height:1.55;
+  cursor:pointer;
+  transition:.12s;
+}
+.opt:hover { background:rgba(245,241,230,0.07); }
+.opt.correct { border-color:var(--green-ok); background:rgba(143,191,138,0.15); }
+.opt.wrong { border-color:var(--red); background:rgba(228,87,46,0.15); }
+.opt:disabled { cursor:default; }
+.quiz-footer {
+  display:flex; justify-content:space-between; align-items:center; margin-top:18px;
+  font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--chalk-dim);
+}
+.next-btn {
+  font-family:'IBM Plex Mono', monospace;
+  background:var(--gold); color:var(--bg-deep); border:none;
+  padding:10px 20px; border-radius:20px; font-weight:600; font-size:12.5px;
+  cursor:pointer; opacity:0; pointer-events:none; transition:.2s;
+}
+.next-btn.show { opacity:1; pointer-events:auto; }
+.score { color:var(--chalk); }
+
+/* typing trainer styles */
+.type-box {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.type-meaning, .type-template-ref {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.type-meaning .tag, .type-template-ref .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
+}
+.type-template-ref {
+  background: transparent;
+  border-style: dashed;
+}
+.type-area-wrap {
+  position: relative;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 22px;
+  margin-bottom: 16px;
+  cursor: text;
+  min-height: 130px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+}
+.type-target-container {
+  font-size: 17px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  font-family: 'IBM Plex Mono', monospace;
+  color: rgba(245,241,230,0.22);
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: none;
+}
+.char-span {
+  position: relative;
+  transition: color 0.1s ease, background 0.1s ease;
+  border-bottom: 2px solid transparent;
+}
+.char-span.typed-correct {
+  color: var(--chalk);
+}
+.char-span.typed-wrong {
+  color: var(--red);
+  background: rgba(228,87,46,0.15);
+  border-bottom-color: var(--red);
+}
+.char-span.caret {
+  color: var(--gold);
+  border-left: 2px solid var(--gold);
+  margin-left: -2px;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  50% { border-left-color: transparent; }
+}
+.type-input {
+  position: absolute;
+  opacity: 0;
+  left: 0; top: 0; width: 100%; height: 100%;
+  cursor: text;
+  border: none;
+  background: transparent;
+  color: transparent;
+  outline: none;
+  z-index: 10;
+}
+.type-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.type-help-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background: transparent;
+  color: var(--chalk-dim);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.type-help-btn:hover {
+  background: rgba(245,241,230,0.08);
+  color: var(--chalk);
+}
+.type-help-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.completed-pulse {
+  animation: pulse-green 0.6s ease-out;
+}
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(143,191,138, 0.5); }
+  100% { box-shadow: 0 0 0 12px rgba(143,191,138, 0); }
+}
+
+.reset-row{ text-align:center; margin-top:40px; }
+.reset-link{
+  font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--chalk-dim);
+  background:none; border:none; cursor:pointer; text-decoration:underline; opacity:0.6;
+}
+.reset-link:hover{ opacity:1; }
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+@media (max-width:560px){
+  h1{ font-size:38px; }
+  .face{ padding:24px 20px; }
+  .meaning-text{ font-size:17px; }
+  .template-text{ font-size:15.5px; }
+  .essay-btn{ font-size:11px; padding:8px 12px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow" id="essayEyebrow">VSTEP / IELTS Writing Task 2</div>
+    <h1 id="mainTitle">Sổ tay mẫu câu</h1>
+    <div class="sub" id="mainSub">Đang tải cấu trúc mẫu câu...</div>
+  </header>
+
+  <div class="essay-switch" id="essaySwitch"></div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="progress-row">
+    <span id="progressLabel">0 / 0 đã thuộc</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div style="flex-grow: 1;"></div>
+    <label class="toggle-container">
+      <input type="checkbox" id="unmasteredOnlyToggle">
+      <span class="toggle-switch"></span>
+      <span>Chỉ ôn câu chưa thuộc</span>
+    </label>
+  </div>
+
+  <div class="mode-switch">
+    <button class="mode-btn active" id="modeFlash">🗂 Thẻ ghi nhớ</button>
+    <button class="mode-btn" id="modeQuiz">✏️ Trắc nghiệm</button>
+    <button class="mode-btn" id="modeType">⌨️ Luyện gõ câu</button>
+  </div>
+
+  <!-- Empty state for completed cards -->
+  <div id="emptyState" style="display:none; text-align:center; padding: 48px 24px; background:var(--bg-alt); border:1px solid var(--line); border-radius:8px; max-width:680px; margin:0 auto;">
+    <div style="font-size:48px; margin-bottom:16px; animation: bounce 1s infinite alternate;">🎉</div>
+    <h3 style="font-family:'Caveat', cursive; font-size:32px; margin:0 0 10px; color:var(--gold);">Tuyệt vời!</h3>
+    <p style="color:var(--chalk-dim); font-size:16px; margin:0 0 24px; line-height:1.6;" id="emptyStateMsg">Bạn đã thuộc toàn bộ các mẫu câu trong nhóm này rồi.</p>
+    <div style="display:flex; justify-content:center; gap:12px;">
+      <button class="essay-btn active" id="emptyResetBtn" style="padding:10px 20px;">Xem lại tất cả</button>
+      <button class="essay-btn" id="emptyNextSecBtn" style="padding:10px 20px;">Sang phần tiếp theo</button>
+    </div>
+  </div>
+
+  <div id="flashView">
+    <div class="card-stage">
+      <div class="card" id="card">
+        <div class="face front">
+          <div class="face-label">Nghĩa tiếng Việt</div>
+          <div class="meaning-text" id="meaningText"></div>
+          <div class="tap-hint">chạm để lật →</div>
+        </div>
+        <div class="face back">
+          <div class="face-label">Mẫu câu tiếng Anh</div>
+          <div class="template-text" id="templateText"></div>
+          <div class="example-box"><b>Ví dụ</b><span id="exampleText"></span></div>
+          <div class="tap-hint">chạm để lật ←</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-nav">
+      <button class="nav-btn" id="prevBtn">‹</button>
+      <span class="counter" id="cardCounter">1 / 1</span>
+      <button class="nav-btn" id="nextBtn">›</button>
+    </div>
+    <div class="card-nav" style="margin-top:14px;">
+      <button class="master-btn" id="masterBtn">✓ Đã thuộc mẫu này</button>
+    </div>
+  </div>
+
+  <div id="quizView" style="display:none;">
+    <div class="quiz-box">
+      <div class="quiz-meaning">
+        <span class="tag">Chọn đúng mẫu câu tiếng Anh cho nghĩa sau</span>
+        <span id="quizMeaning"></span>
+      </div>
+      <div class="options" id="quizOptions"></div>
+      <div class="quiz-footer">
+        <span class="score" id="quizScore">Điểm: 0 / 0</span>
+        <button class="next-btn" id="nextQuizBtn">Câu tiếp theo →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="typeView" style="display:none;">
+    <div class="type-box">
+      <div class="type-meaning">
+        <span class="tag">Dịch nghĩa tiếng Việt</span>
+        <span id="typeMeaning"></span>
+      </div>
+      <div class="type-template-ref">
+        <span class="tag">Cấu trúc mẫu câu (Tham khảo)</span>
+        <span id="typeTemplate" class="template-text"></span>
+      </div>
+      <div class="type-area-wrap" id="typeAreaWrap">
+        <div class="type-target-container" id="typeTargetContainer"></div>
+        <input type="text" id="typeInput" class="type-input" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="type-footer">
+        <button class="type-help-btn" id="typeHelpBtn">Xem gợi ý câu mẫu</button>
+        <span class="score" id="typeScore" style="font-family:'IBM Plex Mono', monospace; font-size:12.5px;">Điểm gõ: 0 / 0</span>
+        <button class="next-btn" id="nextTypeBtn">Câu tiếp theo →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reset-row">
+    <button class="reset-link" id="resetBtn">Xóa tiến trình đã lưu</button>
+  </div>
+</div>
+
+<script>
+// Data for all essay types parsed from markdown files
+const DATA_ALL = {
+  "advantages-disadvantages": [
+    {
+      "id": "mo-bai",
+      "name": "Mở bài",
+      "patterns": [
+        {
+          "template": "These days, with the ever-increasing [ Danh từ / Cụm danh từ ], [ Danh từ / V-ing ] plays an important role in [ Danh từ / V-ing ].",
+          "example": "These days, with the ever-increasing use of technology, online learning plays an important role in education.",
+          "meaning": "Ngày nay, với sự [cái gì đó] ngày càng tăng, [cái gì đó] đóng một vai trò quan trọng trong [cái gì đó]."
+        },
+        {
+          "template": "It is believed that this [ Danh từ chỉ chủ đề ] is very beneficial to [ Danh từ / Cụm danh từ - Đối tượng ]; however, many people think that its drawbacks are various and they have to face a variety of obstacles when [ V-ing / S + V + O ].",
+          "example": "It is believed that this method of learning is very beneficial to students' learning process; however, many people think that its drawbacks are various and they have to face a variety of obstacles when taking overseas courses.",
+          "meaning": "Người ta tin rằng [chủ đề này] rất có lợi cho [ai/cái gì]; tuy nhiên, nhiều người cho rằng nhược điểm của nó rất đa dạng và họ phải đối mặt với nhiều trở ngại khác nhau khi [làm gì]."
+        },
+        {
+          "template": "This essay will examine and shed light on both sides of this [ Danh từ (tendency/form/thing) ].",
+          "example": "This essay will examine and shed light on both sides of this form of distance learning.",
+          "meaning": "Bài luận này sẽ kiểm tra và làm sáng tỏ cả hai mặt của [xu hướng/hình thức này]."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-1",
+      "name": "Thân bài 1 · Lợi ích",
+      "patterns": [
+        {
+          "template": "On the one hand, [ Danh từ / V-ing - Chủ đề ] is beneficial and advantageous in several ways.",
+          "example": "On the one hand, studying abroad is beneficial and advantageous in several ways.",
+          "meaning": "Một mặt, [chủ đề này] có lợi và có lợi thế theo nhiều cách khác nhau."
+        },
+        {
+          "template": "First and foremost, [ Danh từ / V-ing ] is considered as a [ Tính từ ] way of [ Danh từ / V-ing ].",
+          "example": "First and foremost, online learning is considered as a convenient way of learning.",
+          "meaning": "Trước hết và quan trọng nhất, [cái gì đó] được coi là một cách [như thế nào đó] để [làm gì]."
+        },
+        {
+          "template": "It enables [ Tân ngữ - Đối tượng ] to [ Động từ nguyên mẫu ]; as a result, they can [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "It enables learners to have flexible learning hours; as a result, they can arrange time and place to study.",
+          "meaning": "Nó cho phép [ai đó] [làm gì]; kết quả là, họ có thể [làm gì]."
+        },
+        {
+          "template": "In addition, it is very easy for them to [ Động từ nguyên mẫu + Tân ngữ ] which are [ Bị động V3/ed hoặc Tính từ ].",
+          "example": "In addition, it is very easy for them to take overseas courses which are instructed by excellent teachers.",
+          "meaning": "Ngoài ra, rất dễ dàng để họ [làm gì], cái mà [được làm gì / như thế nào]."
+        },
+        {
+          "template": "The second merit is that [ Danh từ / V-ing ] is not only [ Tính từ ] but also [ Tính từ ].",
+          "example": "The second merit is that online learning is not only time-saving but also money-saving.",
+          "meaning": "Lợi ích thứ hai là [cái gì đó] không chỉ [như thế nào] mà còn [như thế nào]."
+        },
+        {
+          "template": "Because of not having to [ Động từ nguyên mẫu + Tân ngữ ], they can save a great deal of [ Danh từ không đếm được ].",
+          "example": "Because of not having to travel to classes, they can save a great deal of time and transportation costs.",
+          "meaning": "Vì không phải [làm gì], họ có thể tiết kiệm được rất nhiều [cái gì]."
+        },
+        {
+          "template": "Additionally, they can [ Động từ nguyên mẫu + Tân ngữ ] because there is no need to [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "Additionally, they can take low-cost courses because there is no need to rent equipment.",
+          "meaning": "Thêm vào đó, họ có thể [làm gì] bởi vì không cần phải [làm gì]."
+        },
+        {
+          "template": "Last but not least, [ Danh từ / V-ing ] allows a large number of [ Danh từ chỉ người ] to [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "Last but not least, e-learning allows a large number of learners to attend a course.",
+          "meaning": "Cuối cùng nhưng không kém phần quan trọng, [cái gì đó] cho phép một số lượng lớn [ai đó] [làm gì]."
+        },
+        {
+          "template": "It creates positive changes in [ Danh từ / Cụm danh từ ] and is easily accessible to a wide range of [ Danh từ chỉ người ], which assists them in [ V-ing + Tân ngữ ].",
+          "example": "It creates positive changes in students and is easily accessible to a wide range of learners, which assists them in boosting their confidence.",
+          "meaning": "Nó tạo ra những thay đổi tích cực ở [ai đó] và dễ dàng tiếp cận được với nhiều đối tượng [ai đó], điều này giúp họ trong việc [làm gì]."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-2",
+      "name": "Thân bài 2 · Tác hại",
+      "patterns": [
+        {
+          "template": "On the other hand, there are numerous disadvantages and downsides of [ Danh từ / V-ing - Chủ đề ].",
+          "example": "On the other hand, there are numerous disadvantages and downsides of being famous.",
+          "meaning": "Mặt khác, có rất nhiều nhược điểm và mặt tối của [chủ đề này]."
+        },
+        {
+          "template": "The first one is that [ Danh từ / V-ing ] can be harmful to [ Danh từ - Đối tượng ].",
+          "example": "The first one is that online learning can be harmful to people's health.",
+          "meaning": "Điều đầu tiên là [cái gì đó] có thể gây hại cho [ai/cái gì]."
+        },
+        {
+          "template": "One of the most obvious drawbacks is that when spending too much time [ V-ing ], people may suffer from [ Danh từ chỉ bệnh/Vấn đề ] and find it hard to adapt to [ Danh từ - Môi trường/Văn hóa ], which leaves negative effects on their mental and physical health.",
+          "example": "One of the most obvious drawbacks is that when spending too much time going online, people may suffer from obesity and find it hard to adapt to a new culture, which leaves negative effects on their mental and physical health.",
+          "meaning": "Một trong những tác hại rõ ràng nhất là khi dành quá nhiều thời gian [làm gì], mọi người có thể phải gánh chịu [bệnh/vấn đề gì] và cảm thấy khó thích nghi với [môi trường/văn hóa nào], điều này để lại những ảnh hưởng tiêu cực đến sức khỏe thể chất và tinh thần của họ."
+        },
+        {
+          "template": "Furthermore, it causes [ Danh từ / Cụm danh từ tiêu cực ] and people have fewer opportunities to [ Động từ nguyên mẫu + Tân ngữ ], which has negative effects on [ Danh từ / Cụm danh từ ].",
+          "example": "Furthermore, it causes reduced face-to-face interaction and students have fewer opportunities to discuss topics with classmates, which has negative effects on their soft skills.",
+          "meaning": "Hơn nữa, nó gây ra [tình trạng tiêu cực gì] và mọi người có ít cơ hội hơn để [làm gì], điều này gây ra những tác động tiêu cực lên [cái gì]."
+        },
+        {
+          "template": "Another detrimental side is that [ Danh từ / V-ing ] costs a great deal of money and time. More specifically, people are required to consume a great deal of time and spend extra money on [ Danh từ / V-ing ].",
+          "example": "Another detrimental side is that studying abroad costs a great deal of money and time. More specifically, people are required to consume a great deal of time and spend extra money on paying tuition fees.",
+          "meaning": "Một mặt bất lợi khác là [cái gì đó] tốn rất nhiều tiền bạc và thời gian. Cụ thể hơn, mọi người buộc phải tiêu tốn một lượng lớn thời gian và chi thêm tiền cho [việc gì]."
+        },
+        {
+          "template": "The final demerit is that [ Danh từ chỉ đối tượng ] might find it easy to get distracted or encounter plenty of challenges, which influences their [ Danh từ - Khía cạnh ] negatively.",
+          "example": "The final demerit is that students might find it easy to get distracted or encounter plenty of challenges, which influences their academic performance negatively.",
+          "meaning": "Nhược điểm cuối cùng là [ai đó] có thể dễ dàng bị xao nhãng hoặc gặp phải nhiều thách thức, điều này ảnh hưởng tiêu cực đến [khía cạnh nào] của họ."
+        }
+      ]
+    },
+    {
+      "id": "ket-bai",
+      "name": "Kết bài",
+      "patterns": [
+        {
+          "template": "All in all, all things considered, it is obvious and clear that [ Danh từ / V-ing - Chủ đề ] has its own merits and demerits, being both beneficial and negative in its own way.",
+          "example": "All in all, all things considered, it is obvious and clear that studying overseas has its own merits and demerits, being both beneficial and negative in its own way.",
+          "meaning": "Tóm lại, sau khi xem xét tất cả các khía cạnh, rõ ràng thấy rằng [chủ đề này] đều có những điểm tốt và điểm xấu riêng, vừa có lợi vừa có hại theo cách riêng của nó."
+        },
+        {
+          "template": "In my opinion, from my point of view, although drawbacks of [ Danh từ / V-ing ] are various, its plus points far exceed its bad points.",
+          "example": "In my opinion, from my point of view, although drawbacks of learning overseas are various, its plus points far exceed its bad points.",
+          "meaning": "Theo ý kiến của tôi, từ góc nhìn của tôi, mặc dù các nhược điểm của [chủ đề này] là rất nhiều, nhưng những điểm cộng của nó vượt xa những điểm trừ."
+        },
+        {
+          "template": "Therefore, it is important and advisable that people take [ Danh từ / V-ing ] into account carefully to control [ Danh từ - Đối tượng ] in a proper way to make use of its benefits.",
+          "example": "Therefore, it is important and advisable that people take homeschooling into account carefully to control the time they spend online in a proper way to make use of its benefits.",
+          "meaning": "Do đó, điều quan trọng và đáng khuyến nghị là mọi người nên cân nhắc [chủ đề này] một cách cẩn thận để kiểm soát [cái gì] theo hướng hợp lý nhằm tận dụng tối đa các lợi ích của nó."
+        }
+      ]
+    }
+  ],
+  "discussion": [
+    {
+      "id": "mo-bai",
+      "name": "Mở bài",
+      "patterns": [
+        {
+          "template": "In modern life, [ Danh từ / V-ing - Chủ đề ] has attracted the interest of many people. While it is claimed / accepted that [ Mệnh đề S+V+O - Mặt thứ nhất ], some people argue / I also believe that [ Mệnh đề S+V+O - Mặt thứ hai ].",
+          "example": "In modern life, video games have attracted the interest of many people. While it is claimed that people should opt to learn English instead of their native language, some people argue that English will not be a replacement for the mother tongue.",
+          "meaning": "Trong cuộc sống hiện đại, [chủ đề] đã thu hút sự quan tâm của nhiều người. Trong khi có ý kiến thừa nhận rằng [mặt thứ nhất], thì một số người lại tranh biện / tôi cũng tin rằng [mặt thứ hai]."
+        },
+        {
+          "template": "My essay will shed light on both views / perspectives of this issue and give my personal opinion / view.",
+          "example": "My essay will shed light on both perspectives and give my personal opinion.",
+          "meaning": "Bài luận của tôi sẽ làm sáng tỏ cả hai góc nhìn / quan điểm của vấn đề này và đưa ra ý kiến / góc nhìn cá nhân của tôi."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-1",
+      "name": "Thân bài 1 · Góc nhìn 1",
+      "patterns": [
+        {
+          "template": "On the one hand, [ Danh từ / V-ing / Mệnh đề ] due to the following reasons / offers great advantages.",
+          "example": "On the one hand, playing video games offers kids great advantages.",
+          "meaning": "Một mặt, [góc nhìn thứ nhất / hoặc chủ đề này mang lại lợi ích lớn] vì những lý do sau đây."
+        },
+        {
+          "template": "First and foremost / In the first place, [ Mệnh đề S+V+O - Ý lớn 1 ]. To be more specific, they [ Động từ nguyên mẫu + Tân ngữ - Giải thích ý lớn 1 ].",
+          "example": "First and foremost, central authorities should decide subjects. To be more specific, they make a comparison of various schools' educational needs.",
+          "meaning": "Trước hết và quan trọng nhất / Ở vị trí đầu tiên, [ý lớn 1]. Cụ thể hơn, họ/chúng [giải thích cho ý lớn 1]."
+        },
+        {
+          "template": "In the second place / In addition, [ Mệnh đề S+V+O - Ý lớn 2 ]. For instance / Specifically, it [ Động từ nguyên mẫu + Tân ngữ / Mệnh đề - Đưa ví dụ ]; as a result, [ Mệnh đề S+V+O - Hệ quả ].",
+          "example": "In the second place, computer games stimulate children's imagination. Specifically, English has a simple letter system; as a result, mastering English enables people to access the global world.",
+          "meaning": "Ở vị trí thứ hai / Ngoài ra, [ý lớn 2]. Ví dụ / Cụ thể là, nó [đưa ví dụ]; kết quả là, [dẫn đến hệ quả gì]."
+        },
+        {
+          "template": "Last but not least, [ Danh từ / V-ing / Mệnh đề - Ý lớn 3 ] enables / allows people to [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "Last but not least, gaming enables children to enhance social skills.",
+          "meaning": "Cuối cùng nhưng không kém phần quan trọng, [ý lớn 3] cho phép / giúp mọi người [làm việc gì đó]."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-2",
+      "name": "Thân bài 2 · Góc nhìn 2",
+      "patterns": [
+        {
+          "template": "On the other hand, there are some reasons why / negative consequences of [ Danh từ / V-ing / Mệnh đề - Góc nhìn thứ hai ].",
+          "example": "On the other hand, there are some negative consequences of playing computer games.",
+          "meaning": "Mặt khác, có một số lý do tại sao / có những hậu quả tiêu cực của [góc nhìn thứ hai / tác hại của chủ đề]."
+        },
+        {
+          "template": "First and foremost / The first one is that [ Mệnh đề S+V+O - Ý lớn 1 ]; consequently / therefore, [ Mệnh đề S+V+O ].",
+          "example": "First and foremost, it leaves harmful effects on children's health; consequently, taking part in these games allows children to have a larger circle of friends.",
+          "meaning": "Trước hết và quan trọng nhất / Điều đầu tiên là [ý lớn 1]; kết quả là / do đó, [hệ quả/hành động tiếp theo]."
+        },
+        {
+          "template": "Moreover / Additionally, [ Mệnh đề S+V+O - Ý lớn 2 ]. For example, [ Mệnh đề S+V+O - Đưa ví dụ ], which [ Động từ chia theo chủ ngữ + Tân ngữ - Ý nghĩa của ví dụ ].",
+          "example": "Moreover, video games make children distracted from their study. For example, some websites show violent images, which promotes their strengths.",
+          "meaning": "Hơn nữa / Thêm vào đó, [ý lớn 2]. Ví dụ, [đưa ví dụ], điều mà [mang lại ý nghĩa/tác động gì]."
+        },
+        {
+          "template": "The final negative side / main reason is that [ Mệnh đề S+V+O - Ý lớn 3 ].",
+          "example": "The final negative side is that gaming impacts children's emotional and social behaviors severely.",
+          "meaning": "Mặt tiêu cực cuối cùng / Lý do chính cuối cùng là [ý lớn 3]."
+        }
+      ]
+    },
+    {
+      "id": "ket-bai",
+      "name": "Kết bài",
+      "patterns": [
+        {
+          "template": "In summary / All things considered, it is undeniable that [ Mệnh đề S+V+O - Khẳng định chủ đề có 2 mặt ]; however, [ Mệnh đề S+V+O - Thể hiện xu hướng thiên về bên nào hoặc khẳng định tầm quan trọng ].",
+          "example": "In summary, it is undeniable that video games have both beneficial and negative sides; however, their cons far outweigh their pros.",
+          "meaning": "Tóm lại / Sau khi xem xét tất cả các khía cạnh, không thể phủ nhận rằng [vấn đề có hai mặt]; tuy nhiên, [quan điểm đánh giá bên nào hơn hoặc chốt lại tầm quan trọng]."
+        },
+        {
+          "template": "In my opinion, it is advisable that [ Mệnh đề S+V+O dạng giả định (S + V-bare) - Đưa ra lời khuyên hoặc giải pháp ] to make use of their benefits / enhance the quality of education system.",
+          "example": "In my opinion, it is advisable that parents control their children's time of playing games to make use of their benefits.",
+          "meaning": "Theo ý kiến của tôi, điều đáng khuyến nghị là [ai đó nên làm gì] để tận dụng tối đa các lợi ích của chúng / nâng cao chất lượng của hệ thống giáo dục."
+        }
+      ]
+    }
+  ],
+  "opinion": [
+    {
+      "id": "mo-bai",
+      "name": "Mở bài",
+      "patterns": [
+        {
+          "template": "These days, [ Danh từ / V-ing - Thực trạng ] is of great importance / has become a controversial issue / topic.",
+          "example": "These days, whether it is compulsory for students to attend classes or not has become a controversial topic.",
+          "meaning": "Ngày nay, [thực trạng/vấn đề gì] đóng vai trò rất quan trọng / đã trở thành một chủ đề/vấn đề gây tranh cãi."
+        },
+        {
+          "template": "While some people believe that [ Mệnh đề S+V+O ], in my opinion, I support the idea / believe that [ Mệnh đề S+V+O thể hiện quan điểm của bạn ] due to some following reasons.",
+          "example": "While some people believe that mass media offer children great advantages, in my opinion, I support the idea that smoking should be prohibited publicly due to some following reasons.",
+          "meaning": "Trong khi một số người tin rằng [ý kiến đối lập], thì theo ý kiến của tôi, tôi ủng hộ ý tưởng / tin rằng [quan điểm của bạn] vì một số lý do sau đây."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-1",
+      "name": "Thân bài 1",
+      "patterns": [
+        {
+          "template": "On the one hand, there are some certain reasons why [ Mệnh đề S+V+O - Luận điểm 1 để bảo vệ quan điểm ].",
+          "example": "On the one hand, there are some certain reasons why university education is significant for students.",
+          "meaning": "Một mặt, có một số lý do chắc chắn tại sao [luận điểm 1 của bạn]."
+        },
+        {
+          "template": "First and foremost / First of all, [ Danh từ / V-ing ] enables / provides / has negative impacts on [ Tân ngữ ].",
+          "example": "First and foremost, smoking has negative impacts on people's health.",
+          "meaning": "Trước hết và quan trọng nhất, [cái gì đó] cho phép / cung cấp / có tác động tiêu cực lên [ai/cái gì]."
+        },
+        {
+          "template": "To begin with / More specifically, [ Mệnh đề S+V+O - Giải thích sâu hơn ]; as a result, they can [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "More specifically, teachers provide students with knowledge; as a result, they can have a deep understanding of subjects.",
+          "meaning": "Để bắt đầu / Cụ thể hơn, [giải thích ý trên]; kết quả là, họ có thể [làm gì]."
+        },
+        {
+          "template": "Furthermore / Moreover, [ Mệnh đề S+V+O ]. To illustrate / For example, [ Mệnh đề S+V+O - Đưa ví dụ ].",
+          "example": "Furthermore, smoking results in negative impacts on passive smokers. For example, people who are nearby smokers can get some diseases easily.",
+          "meaning": "Hơn nữa, [ý bổ trợ]. Để minh họa / Ví dụ, [đưa ví dụ thực tế]."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-2",
+      "name": "Thân bài 2",
+      "patterns": [
+        {
+          "template": "On the other hand / The second reason is that [ Mệnh đề S+V+O hoặc Danh từ - Luận điểm 2 để bảo vệ hoặc mở rộng quan điểm ].",
+          "example": "On the other hand, vocational training brings individuals and the society plenty of benefits.",
+          "meaning": "Mặt khác / Lý do thứ hai là [luận điểm 2 của bạn]."
+        },
+        {
+          "template": "In the first place, [ Mệnh đề S+V+O hoặc Danh từ ] costs / leads to / is beneficial to [ Tân ngữ ].",
+          "example": "In the first place, vocational training courses enable them to gain technical skills.",
+          "meaning": "Ở vị trí đầu tiên, [ý phụ 1] gây ra / dẫn đến / có lợi cho [ai/cái gì]."
+        },
+        {
+          "template": "Additionally / Beside, [ Mệnh đề S+V+O ]. To be more specific, [ Mệnh đề S+V+O - Giải thích kỹ ].",
+          "example": "Additionally, the mass media are great tools for entertainment. To be more specific, spending a great deal of time makes children distract from study.",
+          "meaning": "Thêm vào đó / Bên cạnh đó, [ý phụ 2]. Cụ thể hơn là, [giải thích kỹ ý phụ 2]."
+        },
+        {
+          "template": "The final reason is that [ Mệnh đề S+V+O ]; consequently, they find it easy / hard to [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "The final reason is that smokers set a bad example for children to follow; consequently, they find it easy to get a job.",
+          "meaning": "Lý do cuối cùng là [ý phụ 3]; kết quả là, họ cảm thấy dễ dàng / khó khăn để [làm gì]."
+        }
+      ]
+    },
+    {
+      "id": "ket-bai",
+      "name": "Kết bài",
+      "patterns": [
+        {
+          "template": "In conclusion / All things considered / To summarize, the benefits of [ Danh từ / V-ing ] outweigh its downsides / have two-sided effects.",
+          "example": "In conclusion, the benefits of learning a foreign language outweigh its downsides.",
+          "meaning": "Tóm lại / Sau khi xem xét tất cả các khía cạnh, lợi ích của [cái gì đó] vượt trội hơn so với tác hại của nó / có tác động hai mặt."
+        },
+        {
+          "template": "Therefore / It is advisable that people [ Động từ nguyên mẫu + Tân ngữ ] to choose a study path / to enhance the quality of life.",
+          "example": "Therefore, children should be encouraged to learn it at primary school.",
+          "meaning": "Do đó / Điều đáng khuyến nghị là mọi người nên [làm gì] để chọn hướng đi phù hợp / để nâng cao chất lượng cuộc sống."
+        }
+      ]
+    }
+  ],
+  "problem-solution": [
+    {
+      "id": "mo-bai",
+      "name": "Mở bài",
+      "patterns": [
+        {
+          "template": "In today's world / In recent years, [ Danh từ / V-ing - Thực trạng/Vấn đề ] has become a popular / concerning / worrying issue which has negative impacts on human's lives / family and society.",
+          "example": "In recent years, stress has become a more popular problem which has negative impacts on human's lives.",
+          "meaning": "Trong thế giới ngày nay / Những năm gần đây, [thực trạng/vấn đề gì] đã trở thành một vấn đề phổ biến / đáng lo ngại, cái mà có những tác động tiêu cực đến cuộc sống con người / gia đình và xã hội."
+        },
+        {
+          "template": "This essay will shed light on / clarify causes / consequences of this trend and recommend several measures / assess some of its possible consequences to deal with it.",
+          "example": "This essay will clarify reasons for this worrying trend and examine some of its consequences.",
+          "meaning": "Bài luận này sẽ làm sáng tỏ / làm rõ các nguyên nhân / hệ quả của xu hướng này và đề xuất một vài giải pháp / đánh giá một số hệ quả khả thi của nó để giải quyết vấn đề."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-1",
+      "name": "Thân bài 1 · Nguyên nhân",
+      "patterns": [
+        {
+          "template": "There are several / various reasons why / potential impacts of [ Danh từ / V-ing / Mệnh đề S+V+O ].",
+          "example": "There are several reasons why people desire to become a singleton.",
+          "meaning": "Có một vài / nhiều lý do tại sao / tác động tiềm tàng của [vấn đề/xu hướng này]."
+        },
+        {
+          "template": "The first and foremost cause / The most obvious effect is that [ Mệnh đề S+V+O - Ý lớn 1 ]. To illustrate / It means that [ Mệnh đề S+V+O - Giải thích/Ví dụ ý lớn 1 ].",
+          "example": "The first and foremost cause is that developed nations offer a higher standard of living. To be more specific, these countries provide high-quality facilities.",
+          "meaning": "Nguyên nhân đầu tiên và quan trọng nhất / Tác động rõ ràng nhất là [ý lớn 1]. Để minh họa / Điều đó có nghĩa là [giải thích hoặc đưa ví dụ cho ý lớn 1]."
+        },
+        {
+          "template": "Furthermore / In addition, [ Mệnh đề S+V+O - Ý lớn 2 ]. For instance, [ Mệnh đề S+V+O / Cụm danh từ - Đưa ví dụ ], which [ Động từ chia theo chủ ngữ + Tân ngữ - Hệ quả ].",
+          "example": "In addition, strain leaves negative consequences on people's behaviors. For instance, it results in bad habits like drug abuse, which is harmful to their health.",
+          "meaning": "Hơn nữa / Ngoài ra, [ý lớn 2]. Ví dụ như, [đưa ví dụ], điều mà [dẫn đến hệ quả gì]."
+        },
+        {
+          "template": "Last but not least, [ Mệnh đề S+V+O - Ý lớn 3 ]. As a consequence / Specifically, [ Mệnh đề S+V+O - Giải thích kỹ ].",
+          "example": "Last but not least, highly trained labour have more chances to boost their career prospects. As a consequence, they obtain higher level of education.",
+          "meaning": "Cuối cùng nhưng không kém phần quan trọng, [ý lớn 3]. Kết quả là / Cụ thể là, [giải thích kỹ khía cạnh này]."
+        }
+      ]
+    },
+    {
+      "id": "than-bai-2",
+      "name": "Thân bài 2 · Giải pháp",
+      "patterns": [
+        {
+          "template": "There are several strategies / various measures which the governments / people could take to slow down / deal with / release [ Danh từ chỉ vấn đề ].",
+          "example": "There are several strategies which the governments could take to slow down brain drain.",
+          "meaning": "Có một vài chiến lược / nhiều biện pháp mà chính phủ / người dân có thể thực hiện để làm chậm lại / giải quyết / giải tỏa [vấn đề gì]."
+        },
+        {
+          "template": "In the first place, [ Mệnh đề S+V+O hoặc Danh từ ] could [ Động từ nguyên mẫu + Tân ngữ - Giải pháp 1 ]. More specifically, [ Mệnh đề S+V+O - Triển khai giải pháp 1 ].",
+          "example": "In the first place, the governments could invest more budget in enhancing living conditions. More specifically, they promote the availability of more institutes.",
+          "meaning": "Ở vị trí đầu tiên, [ai đó] có thể [làm giải pháp 1]. Cụ thể hơn, [triển khai chi tiết cho giải pháp 1]."
+        },
+        {
+          "template": "Another alternative / method is that [ Mệnh đề S+V+O - Giải pháp 2 ]. For example / instance, [ Mệnh đề S+V+O - Đưa ví dụ ], which makes a good preparation / allows them to [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "Another alternative is that the governments should encourage enterprises to provide more favorable working conditions. For instance, high-level skilled workers should be paid a competitive salary, which allows a country to keep talented people.",
+          "meaning": "Một giải pháp thay thế / phương pháp khác là [giải pháp 2]. Ví dụ như, [đưa ví dụ], điều mà tạo ra một sự chuẩn bị tốt / cho phép họ [làm việc gì tiếp theo]."
+        },
+        {
+          "template": "The final method to escape from / mitigate [ Danh từ chỉ vấn đề ] is that [ Mệnh đề S+V+O - Giải pháp 3 ].",
+          "example": "The final method to escape from pressure is that people keep work-life balance.",
+          "meaning": "Phương pháp cuối cùng để thoát khỏi / giảm thiểu [vấn đề gì] là [giải pháp 3]."
+        }
+      ]
+    },
+    {
+      "id": "ket-bai",
+      "name": "Kết bài",
+      "patterns": [
+        {
+          "template": "In summary / In conclusion, although negative effects of [ Danh từ / V-ing ] are various, there are effective management strategies / two main causes leading people to [ Động từ nguyên mẫu + Tân ngữ ].",
+          "example": "In summary, although negative effects of stress are various, there are effective stress management strategies.",
+          "meaning": "Tóm lại, mặc dù các tác động tiêu cực của [vấn đề] là rất đa dạng, nhưng có những chiến lược quản lý hiệu quả / có hai nguyên nhân chính dẫn dắt mọi người đến việc [làm gì]."
+        },
+        {
+          "template": "It is important / advisable that [ Mệnh đề dạng giả định (S + V-bare) - Lời khuyên chốt bài ] to overcome / mitigate its disadvantages and enhance the quality of life.",
+          "example": "It is important that people lead a healthy lifestyle to overcome stress of a busy life in modern society.",
+          "meaning": "Điều quan trọng / đáng khuyến nghị là [ai đó nên làm gì] để vượt qua / giảm thiểu các bất lợi của nó và nâng cao chất lượng cuộc sống."
+        }
+      ]
+    }
+  ]
+};
+
+const ESSAY_TYPES = [
+  { id: "advantages-disadvantages", name: "Advantages & Disadvantages" },
+  { id: "discussion", name: "Discussion (Bàn luận 2 vế)" },
+  { id: "opinion", name: "Opinion (Ý kiến cá nhân)" },
+  { id: "problem-solution", name: "Problem & Solution" }
+];
+
+// Fallback storage utility
+const storage = {
+  async get(key) {
+    if (window.storage && typeof window.storage.get === 'function') {
+      try {
+        const res = await window.storage.get(key, false);
+        return res ? res.value : null;
+      } catch (e) {
+        console.warn('window.storage.get failed, fallback to localStorage', e);
+      }
+    }
+    return localStorage.getItem(key);
+  },
+  async set(key, val) {
+    if (window.storage && typeof window.storage.set === 'function') {
+      try {
+        await window.storage.set(key, val, false);
+        return;
+      } catch (e) {
+        console.warn('window.storage.set failed, fallback to localStorage', e);
+      }
+    }
+    localStorage.setItem(key, val);
+  }
+};
+
+// Flatten and add stable deterministic IDs once at startup
+const ALL = [];
+for (const typeKey in DATA_ALL) {
+  DATA_ALL[typeKey].forEach(sec => {
+    let pIdx = 0;
+    sec.patterns.forEach(p => {
+      p._id = `${typeKey}_${sec.id}_${pIdx++}`;
+      p._section = sec.id;
+      p._essayType = typeKey;
+      ALL.push(p);
+    });
+  });
+}
+
+let mastered = new Set();
+let currentEssayType = 'advantages-disadvantages';
+let DATA = DATA_ALL[currentEssayType];
+let currentSection = DATA[0].id;
+let currentIndex = 0;
+let mode = 'flash'; // 'flash', 'quiz', or 'type'
+let quizScore = {correct:0, total:0};
+let typeScore = {correct:0, total:0};
+let unmasteredOnly = false;
+
+let currentQuizPattern = null;
+let quizLocked = false;
+
+let currentTypePattern = null;
+let typeHelpActive = false;
+
+function renderTemplateHTML(t){
+  return t.replace(/\[([^\]]+)\]/g, '<span class="blank">[$1]</span>');
+}
+
+async function loadProgress(){
+  try{
+    const val = await storage.get('mastered-ids');
+    if(val){
+      mastered = new Set(JSON.parse(val));
+    }
+  }catch(e){ console.error('Load progress failed', e); }
+  renderAll();
+}
+
+async function saveProgress(){
+  try{
+    await storage.set('mastered-ids', JSON.stringify([...mastered]));
+  }catch(e){ console.error('Save progress failed', e); }
+}
+
+function currentPatterns(){
+  const secData = DATA.find(s=>s.id===currentSection);
+  if(!secData) return [];
+  const allSecPatterns = secData.patterns;
+  if (unmasteredOnly) {
+    return allSecPatterns.filter(p => !mastered.has(p._id));
+  }
+  return allSecPatterns;
+}
+
+function renderEssaySwitch() {
+  const es = document.getElementById('essaySwitch');
+  es.innerHTML = '';
+  ESSAY_TYPES.forEach(type => {
+    const btn = document.createElement('button');
+    btn.className = 'essay-btn' + (type.id === currentEssayType ? ' active' : '');
+    btn.textContent = type.name;
+    btn.onclick = () => {
+      currentEssayType = type.id;
+      DATA = DATA_ALL[currentEssayType];
+      currentSection = DATA[0].id;
+      currentIndex = 0;
+      updateHeader();
+      renderAll();
+    };
+    es.appendChild(btn);
+  });
+}
+
+function updateHeader() {
+  const activeType = ESSAY_TYPES.find(t=>t.id===currentEssayType);
+  document.getElementById('essayEyebrow').textContent = `IELTS / VSTEP Writing · Task 2`;
+  document.getElementById('mainTitle').textContent = `Sổ tay mẫu câu · ${activeType.name}`;
+  
+  // Calculate total in this essay type
+  let totalInType = 0;
+  DATA_ALL[currentEssayType].forEach(sec => totalInType += sec.patterns.length);
+  document.getElementById('mainSub').textContent = `Luyện thuộc ${totalInType} mẫu câu khung bài — ôn tập qua thẻ, trắc nghiệm, hoặc gõ Monkeytype.`;
+}
+
+function renderTabs(){
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = '';
+  DATA.forEach(sec=>{
+    const btn = document.createElement('button');
+    btn.className = 'tab' + (sec.id===currentSection ? ' active':'');
+    const secPatterns = sec.patterns;
+    const masteredCount = secPatterns.filter(p=>mastered.has(p._id)).length;
+    btn.innerHTML = sec.name + `<span class="cnt">${masteredCount}/${secPatterns.length}</span>`;
+    btn.onclick = ()=>{ currentSection = sec.id; currentIndex = 0; renderAll(); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderProgress(){
+  // Total in current essay type
+  let total = 0;
+  let done = 0;
+  DATA.forEach(sec => {
+    sec.patterns.forEach(p => {
+      total++;
+      if (mastered.has(p._id)) done++;
+    });
+  });
+  document.getElementById('progressLabel').textContent = `${done} / ${total} đã thuộc`;
+  document.getElementById('progressFill').style.width = (total? (done/total*100):0) + '%';
+}
+
+function renderCard(){
+  const patterns = currentPatterns();
+  if (patterns.length === 0) return;
+  if(currentIndex >= patterns.length) currentIndex = 0;
+  if(currentIndex < 0) currentIndex = patterns.length - 1;
+  const p = patterns[currentIndex];
+  document.getElementById('meaningText').textContent = p.meaning;
+  document.getElementById('templateText').innerHTML = renderTemplateHTML(p.template);
+  document.getElementById('exampleText').textContent = ' ' + p.example;
+  document.getElementById('cardCounter').textContent = `${currentIndex+1} / ${patterns.length}`;
+  document.getElementById('card').classList.remove('flipped');
+  const mb = document.getElementById('masterBtn');
+  if(mastered.has(p._id)){
+    mb.classList.add('on'); mb.textContent = '✓ Đã thuộc';
+  } else {
+    mb.classList.remove('on'); mb.textContent = '✓ Đã thuộc mẫu này';
+  }
+}
+
+function renderAll(){
+  renderEssaySwitch();
+  renderTabs();
+  renderProgress();
+  
+  const patterns = currentPatterns();
+  const emptyState = document.getElementById('emptyState');
+  const flashView = document.getElementById('flashView');
+  const quizView = document.getElementById('quizView');
+  const typeView = document.getElementById('typeView');
+  
+  if (patterns.length === 0) {
+    // Empty state - all mastered in current section
+    flashView.style.display = 'none';
+    quizView.style.display = 'none';
+    typeView.style.display = 'none';
+    emptyState.style.display = 'block';
+    
+    // Set message
+    const secName = DATA.find(s=>s.id===currentSection).name;
+    document.getElementById('emptyStateMsg').textContent = `Chúc mừng! Bạn đã thuộc toàn bộ các mẫu câu trong phần "${secName}" của bài viết ${ESSAY_TYPES.find(t=>t.id===currentEssayType).name}.`;
+    
+    // Check if next section exists
+    const currentSecIdx = DATA.findIndex(s=>s.id===currentSection);
+    const nextSecBtn = document.getElementById('emptyNextSecBtn');
+    if (currentSecIdx < DATA.length - 1) {
+      nextSecBtn.style.display = 'inline-block';
+      nextSecBtn.onclick = () => {
+        currentSection = DATA[currentSecIdx + 1].id;
+        currentIndex = 0;
+        renderAll();
+      };
+    } else {
+      nextSecBtn.style.display = 'none';
+    }
+    return;
+  }
+  
+  emptyState.style.display = 'none';
+  
+  if(mode==='flash') {
+    flashView.style.display = 'block';
+    quizView.style.display = 'none';
+    typeView.style.display = 'none';
+    renderCard();
+  } else if (mode==='quiz') {
+    flashView.style.display = 'none';
+    quizView.style.display = 'block';
+    typeView.style.display = 'none';
+    newQuizQuestion();
+  } else if (mode==='type') {
+    flashView.style.display = 'none';
+    quizView.style.display = 'none';
+    typeView.style.display = 'block';
+    newTypeQuestion();
+  }
+}
+
+// card interactions
+document.getElementById('card').onclick = ()=>{
+  document.getElementById('card').classList.toggle('flipped');
+};
+document.getElementById('prevBtn').onclick = ()=>{ currentIndex--; renderCard(); };
+document.getElementById('nextBtn').onclick = ()=>{ currentIndex++; renderCard(); };
+document.getElementById('masterBtn').onclick = (e)=>{
+  e.stopPropagation();
+  const p = currentPatterns()[currentIndex];
+  if(mastered.has(p._id)) mastered.delete(p._id);
+  else mastered.add(p._id);
+  saveProgress();
+  renderCard();
+  renderTabs();
+  renderProgress();
+};
+
+// Mode switch
+document.getElementById('modeFlash').onclick = ()=>{
+  mode='flash';
+  updateModeButtons();
+  renderAll();
+};
+document.getElementById('modeQuiz').onclick = ()=>{
+  mode='quiz';
+  updateModeButtons();
+  renderAll();
+};
+document.getElementById('modeType').onclick = ()=>{
+  mode='type';
+  updateModeButtons();
+  renderAll();
+};
+
+function updateModeButtons() {
+  document.getElementById('modeFlash').className = 'mode-btn' + (mode==='flash' ? ' active':'');
+  document.getElementById('modeQuiz').className = 'mode-btn' + (mode==='quiz' ? ' active':'');
+  document.getElementById('modeType').className = 'mode-btn' + (mode==='type' ? ' active':'');
+}
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+// Quiz logic
+function newQuizQuestion(){
+  quizLocked = false;
+  const currentSecPatterns = currentPatterns();
+  if (currentSecPatterns.length === 0) return;
+  
+  // Pick from current section patterns
+  currentQuizPattern = currentSecPatterns[Math.floor(Math.random()*currentSecPatterns.length)];
+  
+  // Distractors from ALL patterns across all essay types to ensure variety
+  const distractorsPool = ALL.filter(p=>p._id!==currentQuizPattern._id);
+  const distractors = shuffle(distractorsPool).slice(0,3);
+  const options = shuffle([currentQuizPattern, ...distractors]);
+
+  document.getElementById('quizMeaning').textContent = currentQuizPattern.meaning;
+  const optWrap = document.getElementById('quizOptions');
+  optWrap.innerHTML = '';
+  options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt.template;
+    btn.onclick = ()=> selectAnswer(btn, opt);
+    optWrap.appendChild(btn);
+  });
+  document.getElementById('nextQuizBtn').classList.remove('show');
+  updateScoreLabel();
+}
+
+function selectAnswer(btn, opt){
+  if(quizLocked) return;
+  quizLocked = true;
+  quizScore.total++;
+  const isCorrect = opt._id === currentQuizPattern._id;
+  if(isCorrect) quizScore.correct++;
+  [...document.getElementById('quizOptions').children].forEach(b=>{
+    b.disabled = true;
+    if(b.textContent === currentQuizPattern.template) b.classList.add('correct');
+  });
+  if(!isCorrect) btn.classList.add('wrong');
+  if(isCorrect){
+    mastered.add(currentQuizPattern._id);
+    saveProgress();
+    renderTabs();
+    renderProgress();
+  }
+  updateScoreLabel();
+  document.getElementById('nextQuizBtn').classList.add('show');
+}
+
+function updateScoreLabel(){
+  document.getElementById('quizScore').textContent = `Điểm: ${quizScore.correct} / ${quizScore.total}`;
+}
+
+document.getElementById('nextQuizBtn').onclick = newQuizQuestion;
+
+// Typing Trainer Logic
+function newTypeQuestion() {
+  typeHelpActive = false;
+  document.getElementById('typeHelpBtn').classList.remove('active');
+  document.getElementById('typeHelpBtn').textContent = 'Xem gợi ý câu mẫu';
+  document.getElementById('nextTypeBtn').classList.remove('show');
+  
+  const currentSecPatterns = currentPatterns();
+  if (currentSecPatterns.length === 0) return;
+  
+  // Select a random pattern from current active list
+  currentTypePattern = currentSecPatterns[Math.floor(Math.random()*currentSecPatterns.length)];
+  
+  document.getElementById('typeMeaning').textContent = currentTypePattern.meaning;
+  document.getElementById('typeTemplate').innerHTML = renderTemplateHTML(currentTypePattern.template);
+  
+  // Set up character spans
+  const container = document.getElementById('typeTargetContainer');
+  container.innerHTML = '';
+  container.classList.remove('completed-pulse');
+  
+  const example = currentTypePattern.example;
+  for (let i = 0; i < example.length; i++) {
+    const span = document.createElement('span');
+    span.className = 'char-span';
+    // Handle whitespace rendering cleanly
+    if (example[i] === ' ') {
+      span.innerHTML = '&nbsp;';
+    } else {
+      span.textContent = example[i];
+    }
+    container.appendChild(span);
+  }
+  
+  // Focus text input
+  const input = document.getElementById('typeInput');
+  input.value = '';
+  input.maxLength = example.length;
+  setTimeout(() => input.focus(), 50);
+  
+  updateTypeCaret(0);
+  updateTypeScoreLabel();
+}
+
+function updateTypeCaret(index) {
+  const container = document.getElementById('typeTargetContainer');
+  const spans = container.querySelectorAll('.char-span');
+  spans.forEach((span, i) => {
+    span.classList.remove('caret');
+    if (i === index) {
+      span.classList.add('caret');
+    }
+  });
+}
+
+function handleTypeInput() {
+  const input = document.getElementById('typeInput');
+  const val = input.value;
+  const target = currentTypePattern.example;
+  const container = document.getElementById('typeTargetContainer');
+  const spans = container.querySelectorAll('.char-span');
+  
+  let allCorrectSoFar = true;
+  
+  for (let i = 0; i < spans.length; i++) {
+    const span = spans[i];
+    if (i < val.length) {
+      // Compare character
+      if (val[i] === target[i]) {
+        span.className = 'char-span typed-correct';
+      } else {
+        span.className = 'char-span typed-wrong';
+        allCorrectSoFar = false;
+      }
+    } else {
+      span.className = 'char-span';
+    }
+  }
+  
+  updateTypeCaret(val.length);
+  
+  // Verify completion
+  if (val === target) {
+    input.blur();
+    container.classList.add('completed-pulse');
+    document.getElementById('nextTypeBtn').classList.add('show');
+    
+    // Mark as mastered
+    if (!mastered.has(currentTypePattern._id)) {
+      mastered.add(currentTypePattern._id);
+      typeScore.correct++;
+      typeScore.total++;
+      saveProgress();
+      renderTabs();
+      renderProgress();
+    }
+    updateTypeScoreLabel();
+  }
+}
+
+function updateTypeScoreLabel() {
+  document.getElementById('typeScore').textContent = `Điểm gõ: ${typeScore.correct} / ${typeScore.total}`;
+}
+
+document.getElementById('typeInput').oninput = handleTypeInput;
+
+document.getElementById('typeAreaWrap').onclick = () => {
+  document.getElementById('typeInput').focus();
+};
+
+document.getElementById('typeHelpBtn').onclick = () => {
+  typeHelpActive = !typeHelpActive;
+  const container = document.getElementById('typeTargetContainer');
+  const btn = document.getElementById('typeHelpBtn');
+  if (typeHelpActive) {
+    container.style.color = 'rgba(245,241,230,0.55)'; // highlight muted template helper text
+    btn.classList.add('active');
+    btn.textContent = 'Ẩn gợi ý câu mẫu';
+  } else {
+    container.style.color = 'rgba(245,241,230,0.22)';
+    btn.classList.remove('active');
+    btn.textContent = 'Xem gợi ý câu mẫu';
+  }
+  document.getElementById('typeInput').focus();
+};
+
+document.getElementById('nextTypeBtn').onclick = newTypeQuestion;
+
+// Toggle unmastered only
+document.getElementById('unmasteredOnlyToggle').onchange = (e) => {
+  unmasteredOnly = e.target.checked;
+  currentIndex = 0;
+  renderAll();
+};
+
+// Empty state triggers
+document.getElementById('emptyResetBtn').onclick = () => {
+  document.getElementById('unmasteredOnlyToggle').checked = false;
+  unmasteredOnly = false;
+  renderAll();
+};
+
+// Reset storage
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('Xóa toàn bộ tiến trình đã lưu?')) return;
+  mastered = new Set();
+  quizScore = {correct:0,total:0};
+  typeScore = {correct:0,total:0};
+  await saveProgress();
+  renderAll();
+};
+
+// Keyboard navigation
+document.addEventListener('keydown', (e)=>{
+  if (mode === 'type') {
+    // In typing mode, Enter key moves to next question if successfully typed
+    if (e.key === 'Enter') {
+      const nextBtn = document.getElementById('nextTypeBtn');
+      if (nextBtn.classList.contains('show')) {
+        newTypeQuestion();
+      }
+    }
+    return; // Block other shortcut keys to not disrupt typing
+  }
+  
+  if(mode!=='flash') return;
+  if(e.key==='ArrowRight'){ currentIndex++; renderCard(); }
+  if(e.key==='ArrowLeft'){ currentIndex--; renderCard(); }
+  if(e.key===' '){ e.preventDefault(); document.getElementById('card').classList.toggle('flipped'); }
+});
+
+// Initialize
+updateHeader();
+loadProgress();
+</script>
+</body>
+</html>

@@ -114,14 +114,20 @@ function syncPartSelectors() {
     if (currentPart === 1) {
       heroTitle.textContent = 'Luyện Viết Thư VSTEP';
       heroDesc.textContent = '30 đề thi viết thư mẫu · Bài mẫu B1 & B2 · Bản dịch tiếng Việt chi tiết · 20 phút / 120+ từ';
-    } else {
+    } else if (currentPart === 2) {
       heroTitle.textContent = 'Luyện Viết Luận VSTEP B2';
       heroDesc.textContent = '30 đề thi mẫu chất lượng cao · Bài mẫu B1 & B2 · Từ vựng nâng cao · Bản dịch tiếng Việt chi tiết · 40 phút / 250+ từ';
     }
   }
 
   // Update document title
-  document.title = currentPart === 1 ? 'VSTEP Writing Part 1 — Luyện Viết Thư' : 'VSTEP Writing B2 — Nền Tảng Luyện Viết Luận Số 1';
+  if (currentPart === 1) {
+    document.title = 'VSTEP Writing Part 1 — Luyện Viết Thư';
+  } else if (currentPart === 2) {
+    document.title = 'VSTEP Writing B2 — Nền Tảng Luyện Viết Luận Số 1';
+  } else if (currentPart === 3) {
+    document.title = 'Sổ tay mẫu câu VSTEP/IELTS';
+  }
 }
 
 function switchPart(partNum) {
@@ -209,8 +215,24 @@ function buildEssayGrid() {
 
 // ─── NAVIGATION ──────────────────────────────────────────────────────────────
 function showHome() {
+  if (currentPart === 3) {
+    document.getElementById('home-view').style.display = 'none';
+    document.getElementById('essay-view').style.display = 'none';
+    document.getElementById('trainer-view').style.display = 'block';
+    currentEssay = null;
+    stopTimer();
+    const container = document.getElementById('sidebar-list');
+    if (container) {
+      container.innerHTML = `<div style="padding:20px; text-align:center; color:var(--ink-muted); font-size:13px; line-height:1.6;">
+        Đang xem: <strong>Sổ tay mẫu câu</strong>.<br>Chọn Part 1 hoặc Part 2 để xem đề thi và luyện viết.
+      </div>`;
+    }
+    return;
+  }
+
   document.getElementById('home-view').style.display = 'block';
   document.getElementById('essay-view').style.display = 'none';
+  document.getElementById('trainer-view').style.display = 'none';
   currentEssay = null;
   stopTimer();
   buildSidebar();
@@ -224,6 +246,7 @@ function openEssay(essay) {
 
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('essay-view').style.display = 'block';
+  document.getElementById('trainer-view').style.display = 'none';
 
   // Badge
   const badgeMap = {
